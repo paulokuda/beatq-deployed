@@ -1,0 +1,16 @@
+{
+  "name": "countPlayers",
+  "description": "Example of socket.io use",
+  "scripts": {
+    "start": "app.js"
+  },
+  "version": "0.0.1-2",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "express": "^4.10.1",
+    "morgan": "^1.4.1",
+    "socket.io": "^1.2.0"
+  }
+}
