@@ -1,12 +1,18 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<!-- Notice that socket.io adds a path to its client-side js that is not in /public -->
-	<script src="/socket.io/socket.io.js"></script>
-	<!-- This is my example client-side javascript that uses socket.io -->
-	<script src="/javascripts/clientSocket.js"></script>
-	<body>
-		<p> There are currently <span id="numPlayers">no</span> players.</p>
-		<p id="welcome"></p>	
-	</body
+  <head>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="javascripts/clientSocket.js"></script>
+    <link rel="stylesheet" href="css/basic.css" type="text/css">
+    <title>Socket.IO chat</title>
+
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+  </body>
 </html>

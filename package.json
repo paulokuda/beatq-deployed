@@ -9,7 +9,7 @@
     "node": ">=0.10"
   },
   "dependencies": {
-    "express": "^4.10.1",
+    "express": "^4.10.2",
     "morgan": "^1.4.1",
     "socket.io": "^1.2.0"
   }

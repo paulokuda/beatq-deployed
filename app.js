@@ -25,6 +25,10 @@ app.use(morgan('tiny'));
 // Handle static files
 app.use(express.static(__dirname + '/public'));
 
+
+app.get('/', function(request, response){
+  response.send('<h1>Hello world</h1>');
+});
 /* 
  * This section is pretty typical for setting up socket.io.
  *
