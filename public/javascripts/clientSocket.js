@@ -1,4 +1,18 @@
 $(document).ready(function(){
+    // CLIENT-SIDE JS
+    var scrolled = false;
+    function updateScroll(){ //this function will update the messages so that the message at the bottom of the chat is always the most recent
+        if(!scrolled){
+            var element = document.getElementById("messages");
+            element.scrollTop = element.scrollHeight;
+        }
+    }
+    // END CLIENT-SIDE JS
+
+
+
+    // ALL SOCKET WORK
+    var request = require('request');
     var socket = io();
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
@@ -6,6 +20,61 @@ $(document).ready(function(){
       return false;
     });
     socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
+      if (msg.search("youtube") === 12) {
+        var firstHalfUrl = "<iframe width=\u0022420\u0022 height=\u0022315\u0022src=\u0022http://www.youtube.com/embed/"
+        var equalIndex = msg.indexOf("=");
+        var videoId = msg.slice(equalIndex+1)
+        var secondHalfUrl = "?autoplay=1\u0022></iframe>"
+        $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
+        $('#messages').append($('<li>').text("User has just added a YouTube video to your queue."));
+        updateScroll();
+        return false;
+      }
+      if (msg.search("soundcloud") === 8) {
+        console.log("sound cloud event was hit");
+        request('http://www.google.com', function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            console.log(body) // Print the google web page.
+            }
+        })
+        $('#messages').append($('<li>').text("User has just added a SoundCloud song to your queue."));
+        updateScroll();
+        return false;
+      }
+      else {
+        $('#messages').append($('<li>').text(msg));
+        updateScroll();
+      }  
+      
+      return false;
     });
+    // socket.on('youtube detected', function(msg){
+    //   var firstHalfUrl = "<iframe width=\u0022420\u0022 height=\u0022315\u0022src=\u0022http://www.youtube.com/embed/"
+    //   var equalIndex = msg.indexOf("=");
+    //   var videoId = msg.slice(equalIndex+1)
+    //   var secondHalfUrl = "?autoplay=1\u0022></iframe>"
+    //   $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
+
+    //   updateScroll();
+
+    //   // MAKE AJAX CALL HERE 
+    //   return false;
+    //   // CALL A FUNCTION THAT GETS THE YOUTUBE VIDEO (AJAX) (e.g. fetchYoutube())
+    // });
+    // socket.on('soundcloud detected', function(msg){
+    //    // var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022450\u0022 scrolling=\u0022no\u0022 frameborder=\u0022no\u0022 src=\u0022https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/"
+    //    // var secondHalfUrl = "&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true\u0022></iframe>"
+    //    // var songId =
+    //    console.log("sound cloud event was hit");
+    //    curl('www.google.com', function(err) {
+    //       console.info("hello");
+    //     });
+
+    //   $('#media').html($('<li>').text("SOUNDCLOUD DETECTED"));
+    //   updateScroll();
+    //   // MAKE AJAX CALL HERE 
+    //   return false;
+    //   // CALL A FUNCTION THAT GETS THE SoundCloud song (AJAX) (e.g. fetchSoundcloud())
+    // });
+    // END SOCKET WORK
 });

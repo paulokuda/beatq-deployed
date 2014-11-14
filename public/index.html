@@ -5,14 +5,27 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="javascripts/clientSocket.js"></script>
     <link rel="stylesheet" href="css/basic.css" type="text/css">
-    <title>Socket.IO chat</title>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <title>BeatQ</title>
 
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+ 
+    <div class="row">
+      <div class="col s12 m6" id="media">&nbsp;</div>
+      <div class="col s12 m3">
+        <ul id="messages"></ul>
+            <form action="#">
+              <input id="m" autocomplete="off" /><button>Send</button>
+            </form>
+      </div>
+    </div>
+      
+            
 
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="javascripts/materialize.min.js"></script>
   </body>
 </html>
+

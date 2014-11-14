@@ -8,10 +8,15 @@
  */
 
 // Normal Express requires...
+var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express'),
   http = require('http'),
   morgan = require('morgan'),
   app = express();
+
+// var curl = require('node-curl');
+var request = require('request');
+  
 
 // Set the views directory
 app.set('views', __dirname + '/views');
@@ -29,6 +34,8 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(request, response){
   response.send('<h1>Hello world</h1>');
 });
+
+app.get("/get/:message?", messageRoutes.checkMessage);
 /* 
  * This section is pretty typical for setting up socket.io.
  *

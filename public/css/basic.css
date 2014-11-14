@@ -4,35 +4,58 @@ body {
     font: 13px Helvetica, Arial; 
 }
 form { 
-    background: #000; 
+    /*background: #; */
+    border: solid;
     padding: 3px; 
     position: fixed; 
     /*bottom: 0; */
     width: 30%; 
+
     
 }
 form input { 
-    border: 0; 
-    padding: 10px; 
+    border: solid;
+    /*border: 1; */
+   /* padding: 10px; 
     width: 90%; 
-    margin-right: .5%; 
+    margin-right: .5%; */
 }
 form button { 
-    width: 9%; 
-    background: rgb(130, 224, 255); 
-    border: none; padding: 10px; 
+    
 }
 #messages { 
     list-style-type: none; 
-    margin: 0; padding: 0;
-    width: 30%;
+    
+    width: 100%;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: scroll;
+    /*border-width: 5px;*/
+    /*padding: 5px 10px; */
     
 }
 #messages li { 
-
-    padding: 5px 10px; 
+    /*border-style: solid;*/
+    
 }
 #messages li:nth-child(odd) { 
     
     background: #eee; 
 }
+#chat-box {
+    width: 33%;
+    padding-left: 66%;
+    /*padding-left: 47%;
+    padding-top: 10%;*/
+    border: solid;
+    border-color: black;
+    display: inline-block;
+    /*position: */
+
+}
+#media-area {
+    height: 450px;
+    width: 450px;
+}
+
+
