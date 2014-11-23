@@ -8,6 +8,7 @@
  */
 
 // Normal Express requires...
+var dbRoutes = require('./routes/dbRoutes'); 
 var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express'),
   http = require('http'),
@@ -31,11 +32,23 @@ app.use(morgan('tiny'));
 app.use(express.static(__dirname + '/public'));
 
 
-app.get('/', function(request, response){
-  response.send('<h1>Hello world</h1>');
+// app.get('/', function(request, response){
+//   response.send('<h1>Hello world</h1>');
+// });
+
+app.get("/get/:url?", function(req, response) {
+
+    console.log("YES, I DID IT!! - getSoundcloudUrl in app.js");
+    response.end("woah");
+    request({
+  uri: "http://www.sitepoint.com",
+}, function(error, response, body) {
+  console.log(body);
+});
 });
 
-app.get("/get/:message?", messageRoutes.checkMessage);
+
+app.get('/:collection/:operation', dbRoutes.modify);
 /* 
  * This section is pretty typical for setting up socket.io.
  *

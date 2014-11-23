@@ -28,3 +28,23 @@ exports.checkMessage = function(request, response) {
     // response.render('index', { 'message': getPlayer });
     // response.send(tennisArray);
 }
+
+exports.getSoundcloudUrl = function(request, response) {
+
+ //    response.writeHead(200, {
+ //                 'Content-Type': 'text/html',
+ //                 'Access-Control-Allow-Origin' : '*'});
+
+	// console.log("YES this is best case, I DID IT!! - getSoundcloudUrl in message models")
+    // request({
+    //     uri: "http://www.paulokuda.com",
+    //     }, function(error, response, body) {
+    //     console.log(body);
+    // });
+    
+    
+    // console.log("this is the get player: " + JSON.stringify(getPlayer.length));
+    // response.render('index', { 'message': getPlayer });
+    // response.send(tennisArray);
+}
+

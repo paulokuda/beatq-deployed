@@ -1,5 +1,18 @@
+
 $(document).ready(function(){
     // CLIENT-SIDE JS
+
+
+
+
+    
+    
+
+
+
+
+
+
     var scrolled = false;
     function updateScroll(){ //this function will update the messages so that the message at the bottom of the chat is always the most recent
         if(!scrolled){
@@ -7,12 +20,17 @@ $(document).ready(function(){
             element.scrollTop = element.scrollHeight;
         }
     }
+    function sanitizeSoundObject(object) {
+        return object.replace("/\/", "");
+    }
+
+    
     // END CLIENT-SIDE JS
 
 
 
     // ALL SOCKET WORK
-    var request = require('request');
+    
     var socket = io();
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
@@ -32,22 +50,35 @@ $(document).ready(function(){
       }
       if (msg.search("soundcloud") === 8) {
         console.log("sound cloud event was hit");
-        request('http://www.google.com', function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            console.log(body) // Print the google web page.
-            }
-        })
         $('#messages').append($('<li>').text("User has just added a SoundCloud song to your queue."));
         updateScroll();
-        return false;
+
+        
+        SC.initialize({
+          client_id: '9ba845e7851ea5f9edf205e927f90b72'
+        });
+
+        var track_url = msg;
+        SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
+            $('#media').html(sanitizeSoundObject(oEmbed.html));
+            // sanitizeSoundObject(oEmbed.html)
+          // console.log('oEmbed response: ' + sanitizeSoundObject(oEmbed.html));
+        });
+
+
+       
       }
       else {
         $('#messages').append($('<li>').text(msg));
         updateScroll();
-      }  
+      } 
       
       return false;
     });
+
+
+    
+    
     // socket.on('youtube detected', function(msg){
     //   var firstHalfUrl = "<iframe width=\u0022420\u0022 height=\u0022315\u0022src=\u0022http://www.youtube.com/embed/"
     //   var equalIndex = msg.indexOf("=");

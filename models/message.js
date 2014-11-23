@@ -1,19 +1,29 @@
+var util = require("util");
+var mongoClient = require('mongodb').MongoClient;
 /*
- * This is the Point class shown in class when discussing JavaScript
+ * This is the connection URL
+ * Give the IP Address / Domain Name (else localhost)
+ * The typical mongodb port is 27012
+ * The path part (here "fallTest") is the name of the databas
  */
 
-// Define a constructor function to initialize a new Point object
+
+
 var musicQueue = [];
+
 
 var Message = {
     // this.x = x;    
                       
 
-    checkMessage : function(msg) {
-        var isAudio = false;
-        // tennisCollection.push({tennis_name : tennis_name, handed : handed, ranking : ranking});
-        console.log("the message is: " + JSON.stringify(msg));
-        // console.log("the array is: " + JSON.stringify(tennisCollection));
+    getSoundcloudUrl : function(msg) {
+        console.log("solid")
+        request('http://www.google.com', function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            console.log(body) // Print the google web page.
+            return body;
+            }
+        })
     }
     // getPlayer : function(tennis_name) {
     //     console.log("get player method was hit in tennis.js");
@@ -61,6 +71,7 @@ var Message = {
     //     return tennisCollection;
     // }
 }
+
 
 
 

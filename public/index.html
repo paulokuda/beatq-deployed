@@ -1,31 +1,37 @@
 <!doctype html>
 <html>
   <head>
+    <META HTTP-EQUIV="Access-Control-Allow-Origin" value="*">
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="javascripts/clientSocket.js"></script>
     <link rel="stylesheet" href="css/basic.css" type="text/css">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
     <title>BeatQ</title>
+
 
   </head>
   <body>
- 
+  <div class="main-container">
     <div class="row">
       <div class="col s12 m6" id="media">&nbsp;</div>
       <div class="col s12 m3">
         <ul id="messages"></ul>
-            <form action="#">
-              <input id="m" autocomplete="off" /><button>Send</button>
-            </form>
+        <form action="#">
+          <input id="m" autocomplete="off" />
+          <!-- <a href="" class="" id="chat-send">Send</a> -->
+        </form>
       </div>
     </div>
-      
+  </div>
+
             
 
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="javascripts/materialize.min.js"></script>
+      <script src="http://connect.soundcloud.com/sdk.js"></script>
   </body>
 </html>
 
