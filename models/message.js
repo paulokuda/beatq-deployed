@@ -4,7 +4,7 @@ var mongoClient = require('mongodb').MongoClient;
  * This is the connection URL
  * Give the IP Address / Domain Name (else localhost)
  * The typical mongodb port is 27012
- * The path part (here "fallTest") is the name of the databas
+ * The path part (here "fallTest") is the name of the database
  */
 
 
@@ -17,13 +17,7 @@ var Message = {
                       
 
     getSoundcloudUrl : function(msg) {
-        console.log("solid")
-        request('http://www.google.com', function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            console.log(body) // Print the google web page.
-            return body;
-            }
-        })
+        
     }
     // getPlayer : function(tennis_name) {
     //     console.log("get player method was hit in tennis.js");

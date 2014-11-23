@@ -1,7 +1,7 @@
 var messageModel = require ('../models/message.js');
 
 exports.init = function(io) {
-	var currentPlayers = 0; // keep track of the number of players
+	var currentUsers = 0; // keep track of the number of users
 
   // When a new connection is initiated
 	io.sockets.on('connection', function (socket) {
@@ -30,21 +30,6 @@ exports.checkMessage = function(request, response) {
 }
 
 exports.getSoundcloudUrl = function(request, response) {
-
- //    response.writeHead(200, {
- //                 'Content-Type': 'text/html',
- //                 'Access-Control-Allow-Origin' : '*'});
-
-	// console.log("YES this is best case, I DID IT!! - getSoundcloudUrl in message models")
-    // request({
-    //     uri: "http://www.paulokuda.com",
-    //     }, function(error, response, body) {
-    //     console.log(body);
-    // });
-    
-    
-    // console.log("this is the get player: " + JSON.stringify(getPlayer.length));
-    // response.render('index', { 'message': getPlayer });
-    // response.send(tennisArray);
+    // decided against doing server side requests, as everything can be handled from the client-side. also, by doing server to server requests from a users input isn't safe and could cause problems later
 }
 
