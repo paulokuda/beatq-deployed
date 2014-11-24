@@ -39,10 +39,10 @@ $(document).ready(function(){
         e.preventDefault();
         socket.emit('new user', $('#nickname').val(), function(data) {
             if (data) {
-                alert('successful nickname');
+                console.log('successful nickname');
             }
             else {
-                alert('unsuccessful nickname');
+                console.log('unsuccessful nickname');
             }
         });
         $('#nickname').val('');
@@ -61,22 +61,26 @@ $(document).ready(function(){
             html += data[i] + '<br>'
         }
         $('#users').html(html);
-    })
+    });
+
+    socket.on('user left', function(data){
+        $('#messages').append($('<li>').text(data.user + " " + "has left the Q."));
+    });
 
     socket.on('chat message', function(msg){
-    alert("the data is: " + msg.number);
+    
 
-      if (msg.search("youtube") === 12) {
+      if (msg.msg.search("youtube") === 12) {
         var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/"
         var equalIndex = msg.indexOf("=");
         var videoId = msg.slice(equalIndex+1)
         var secondHalfUrl = "?autoplay=1\u0022></iframe>"
         $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
-        $('#messages').append($('<li>').text("User has just added a YouTube video to your queue."));
+        $('#messages').append($('<li>').text(msg.user + "has just added a YouTube video to your queue."));
         updateScroll();
         return false;
       }
-      if (msg.search("soundcloud") === 8) {
+      if (msg.msg.search("soundcloud") === 8) {
         console.log("sound cloud event was hit");
         $('#messages').append($('<li>').text("User has just added a SoundCloud song to your queue."));
         updateScroll();
@@ -102,7 +106,8 @@ $(document).ready(function(){
        
       }
       else {
-        $('#messages').append($('<li>').text(msg));
+        
+        $('#messages').append($('<li>').text(msg.user + ": " + msg.msg));
         updateScroll();
       } 
       

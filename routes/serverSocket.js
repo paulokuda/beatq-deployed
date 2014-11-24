@@ -14,7 +14,7 @@ exports.init = function(io) {
           }
           else {
             callback(true);
-            console.log("the desired message is: " + msg);
+            
             socket.nickname = msg;
             nicknames.push(socket.nickname);
             io.sockets.emit('usernames', nicknames);
@@ -22,24 +22,27 @@ exports.init = function(io) {
         });
         // socket.emit('players', { number: currentUsers});
 		socket.on('chat message', function(msg){
-		  	io.sockets.emit('chat message', { msg: msg, number: currentUsers});
+            console.log(socket.nickname);
+            console.log(msg);
+		  	io.sockets.emit('chat message', { msg: msg, user: socket.nickname});
 		  
 		});
-	});
-    function updateNicknames() {
-        io.sockets.emit('usernames', nicknames);
-    }
-
-    io.sockets.on('disconnect', function(data){
-        if (!socket.nickname) {
-            return;
+        socket.on('disconnect', function(data){
+            if (!socket.nickname) {
+                return;
+            }
+            else{
+                nicknames.splice(nicknames.indexOf(socket.nickname), 1);
+                updateNicknames();
+                io.sockets.emit('user left', {user: socket.nickname});
         }
-        else{
-            nicknames.splice(nicknames.indexOf(socket.nickname), 1);
-            updateNicknames();
+        function updateNicknames() {
+            io.sockets.emit('usernames', nicknames);
         }
 
     })
+	});
+    
 	
 
 }
