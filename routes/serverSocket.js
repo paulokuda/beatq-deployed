@@ -5,12 +5,41 @@ exports.init = function(io) {
 
   // When a new connection is initiated
 	io.sockets.on('connection', function (socket) {
+        ++currentUsers;
 		console.log('a user connected');
+        socket.on('new user', function(msg, callback){
+            console.log(nicknames);
+          if (nicknames.indexOf(msg) != -1) { // making sure that the username isn't already in use
+            callback(false);
+          }
+          else {
+            callback(true);
+            console.log("the desired message is: " + msg);
+            socket.nickname = msg;
+            nicknames.push(socket.nickname);
+            io.sockets.emit('usernames', nicknames);
+          }
+        });
+        // socket.emit('players', { number: currentUsers});
 		socket.on('chat message', function(msg){
-		  	io.sockets.emit('chat message', msg);
+		  	io.sockets.emit('chat message', { msg: msg, number: currentUsers});
 		  
 		});
 	});
+    function updateNicknames() {
+        io.sockets.emit('usernames', nicknames);
+    }
+
+    io.sockets.on('disconnect', function(data){
+        if (!socket.nickname) {
+            return;
+        }
+        else{
+            nicknames.splice(nicknames.indexOf(socket.nickname), 1);
+            updateNicknames();
+        }
+
+    })
 	
 
 }

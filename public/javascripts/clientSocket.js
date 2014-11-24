@@ -32,14 +32,42 @@ $(document).ready(function(){
     // ALL SOCKET WORK
     
     var socket = io();
+    var nickForm = $('#setNickname');
+    var nickError = $('#nickError');
+    var nickBox = $('#nickname');
+    $('#setNickname').submit(function(e) {
+        e.preventDefault();
+        socket.emit('new user', $('#nickname').val(), function(data) {
+            if (data) {
+                alert('successful nickname');
+            }
+            else {
+                alert('unsuccessful nickname');
+            }
+        });
+        $('#nickname').val('');
+    });
+
+
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
       $('#m').val('');
       return false;
     });
+
+    socket.on('usernames', function(data){
+        var html = '';
+        for (i = 0; i < data.length; i++){
+            html += data[i] + '<br>'
+        }
+        $('#users').html(html);
+    })
+
     socket.on('chat message', function(msg){
+    alert("the data is: " + msg.number);
+
       if (msg.search("youtube") === 12) {
-        var firstHalfUrl = "<iframe width=\u0022420\u0022 height=\u0022315\u0022src=\u0022http://www.youtube.com/embed/"
+        var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/"
         var equalIndex = msg.indexOf("=");
         var videoId = msg.slice(equalIndex+1)
         var secondHalfUrl = "?autoplay=1\u0022></iframe>"
@@ -60,6 +88,11 @@ $(document).ready(function(){
 
         var track_url = msg;
         SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
+            oEmbed.height = 315;
+            oEmbed.width = 420;
+            console.log(oEmbed.html);
+            // var changeSize = oEmbed.html;
+
             $('#media').html(sanitizeSoundObject(oEmbed.html));
             // sanitizeSoundObject(oEmbed.html)
           // console.log('oEmbed response: ' + sanitizeSoundObject(oEmbed.html));

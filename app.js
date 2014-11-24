@@ -44,7 +44,7 @@ app.get("/get/:url?", function(req, response) {
 
 app.get('/:collection/:operation', dbRoutes.modify);
 
-
+nicknames = [];
 /*1*/ var httpServer = http.Server(app);
 /*2*/ var sio =require('socket.io');
 /*3*/ var io = sio(httpServer);
