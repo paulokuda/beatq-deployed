@@ -1,12 +1,18 @@
 var messageModel = require ('../models/message.js');
 
+
+
+
+
 exports.init = function(io) {
 	var currentUsers = 0; // keep track of the number of users
+
 
   // When a new connection is initiated
 	io.sockets.on('connection', function (socket) {
         ++currentUsers;
 		console.log('a user connected');
+
         socket.on('new user', function(msg, callback){
             console.log(nicknames);
           if (nicknames.indexOf(msg) != -1) { // making sure that the username isn't already in use
@@ -17,7 +23,7 @@ exports.init = function(io) {
             
             socket.nickname = msg;
             nicknames.push(socket.nickname);
-            io.sockets.emit('usernames', nicknames);
+            io.sockets.emit('usernames', {nicknames: nicknames, user: socket.nickname});
           }
         });
         // socket.emit('players', { number: currentUsers});
@@ -28,6 +34,7 @@ exports.init = function(io) {
 		  
 		});
         socket.on('disconnect', function(data){
+            console.log('a user disconnected');
             if (!socket.nickname) {
                 return;
             }

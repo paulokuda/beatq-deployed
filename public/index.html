@@ -2,30 +2,117 @@
 <html>
   <head>
     <META HTTP-EQUIV="Access-Control-Allow-Origin" value="*">
+    <!--<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="javascripts/clientSocket.js"></script>-->
+    <link rel="stylesheet" href="css/basic.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+
+
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="javascripts/clientSocket.js"></script>
-    <link rel="stylesheet" href="css/basic.css" type="text/css">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/materialize.min.js"></script>
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+    <script type="text/javascript" src="javascripts/api.js"></script>
+    <!-- // <script src="http://www.youtube.com/player_api"></script> -->
     <title>BeatQ</title>
 
 
   </head>
   <body>
-  <div id="nickWrap">
-    <p>Enter your name:</p>
+    
+
+  <!-- <video id="video1" width="420" controls="controls" type="video/youtube">
+    <source src="https://www.youtube.com/watch?v=BJ78bwKOUs4" type="video/mp4">
+  </video> -->
+  
+<div id="first-page">
+  <div class="row">
+      <div class="col s12 m12">
+        <br><br>
+        <h1 class="center">Welcome to BeatQ!</h1>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col s12 m12">
+        <br>
+        <center>
+          <button class="btn waves-effect waves-light" type="submit" name="action" id="new-room">New Room</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="btn waves-effect waves-light" type="submit" name="action">Join Room</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="btn waves-effect waves-light" type="submit" name="action">About</button>
+        </center>
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div id="nickWrap" class="z-depth-1">
+    
     <p id="nickError"></p>
     <form id="setNickname">
-      <input size="35" id="nickname"></input>
-      <input type="submit"></input>
+      <input size="35" id="nickname" placeholder="What's your name?"></input>
+      <center><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></center>
     </form>
   </div>
+
+
+
+      
+
+
+
+
   <div id="users">
   </div>
   <div class="main-container">
     <div class="row">
-      <div class="col s12 m6" id="media">&nbsp;</div>
+      <div class="col s12 m6" id="media">
+          <div id="player"></div>
+     <script src="http://www.youtube.com/player_api"></script>
+     <script>
+      // create youtube player
+      
+        var player;
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('player', {
+              height: '390',
+              width: '395',
+              videoId: 'JOlCUtxQW0Y',
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+            });
+        }
+
+        // autoplay video
+        function onPlayerReady(event) {
+            if (theQ.length != 0){
+              event.target.playVideo();
+            }
+        }
+
+        // when video ends
+        function onPlayerStateChange(event) {        
+            if(event.data === 0) {
+                player.loadVideoById(theQ[0]);
+                if (theQ.length > 1){
+                  theQ.shift();
+                }
+            };
+
+        }
+      
+    
+     </script>
+      </div>
       <div class="col s12 m3">
         <ul id="messages"></ul>
         <form action="#">
@@ -33,15 +120,31 @@
           <!-- <a href="" class="" id="chat-send">Send</a> -->
         </form>
       </div>
+      </div>
     </div>
   </div>
 
             
 
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="javascripts/materialize.min.js"></script>
-      <script src="http://connect.soundcloud.com/sdk.js"></script>
+
+      
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

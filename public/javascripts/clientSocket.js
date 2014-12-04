@@ -1,15 +1,37 @@
+var theQ = [];
+var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/";
+var secondHalfUrl = "?autoplay=0\u0022></iframe>";
+
 
 $(document).ready(function(){
+    
+    $('#nickname').focus(function(){
+        $(this).removeAttr('placeholder');
+    });
+   
     // CLIENT-SIDE JS
 
 
-
-
+    SC.initialize({
+          client_id: '0038e5ddad7a0309d5438907abbdde2b'
+    });
     
     
 
+    $('.main-container').hide();
+    $('#nickWrap').hide();
+    
 
+  
 
+    
+
+    document.getElementById("new-room").onclick = function(){
+        $('#first-page').slideToggle();
+        $('#nickWrap').show();
+
+    }
+    
 
 
 
@@ -24,12 +46,12 @@ $(document).ready(function(){
         return object.replace("/\/", "");
     }
 
-    
     // END CLIENT-SIDE JS
 
 
 
     // ALL SOCKET WORK
+
     
     var socket = io();
     var nickForm = $('#setNickname');
@@ -39,7 +61,13 @@ $(document).ready(function(){
         e.preventDefault();
         socket.emit('new user', $('#nickname').val(), function(data) {
             if (data) {
-                console.log('successful nickname');
+                // console.log('successful nickname');
+                // alert(JSON.stringify(nickBox));
+
+                $('#nickWrap').slideUp();
+                $('.main-container').show();
+
+
             }
             else {
                 console.log('unsuccessful nickname');
@@ -55,6 +83,7 @@ $(document).ready(function(){
       return false;
     });
 
+   
     socket.on('usernames', function(data){
         var html = '';
         for (i = 0; i < data.length; i++){
@@ -70,80 +99,66 @@ $(document).ready(function(){
     socket.on('chat message', function(msg){
     
 
-      if (msg.msg.search("youtube") === 12) {
+      if ((msg.msg.search("youtube") === 12) && (theQ.length === 0)) {  
+        
         var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/"
-        var equalIndex = msg.indexOf("=");
-        var videoId = msg.slice(equalIndex+1)
-        var secondHalfUrl = "?autoplay=1\u0022></iframe>"
-        $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
-        $('#messages').append($('<li>').text(msg.user + "has just added a YouTube video to your queue."));
+        var equalIndex = msg.msg.indexOf("=");
+        var videoId = msg.msg.slice(equalIndex+1)
+        var secondHalfUrl = "?autoplay=1\u0022></iframe>";
+        var fullUrl = (firstHalfUrl + videoId + secondHalfUrl);
+        theQ.push("" + videoId);
+        // alert(fullUrl);
+        // $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
+        $('#messages').append($('<li>').text(msg.user + " has just added a YouTube video to your queue."));
         updateScroll();
         return false;
       }
-      if (msg.msg.search("soundcloud") === 8) {
-        console.log("sound cloud event was hit");
-        $('#messages').append($('<li>').text("User has just added a SoundCloud song to your queue."));
-        updateScroll();
-
+      if ((msg.msg.search("youtube") === 12) && (theQ.length != 0)) {  
         
-        SC.initialize({
-          client_id: '9ba845e7851ea5f9edf205e927f90b72'
-        });
+        var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/"
+        var equalIndex = msg.msg.indexOf("=");
+        var videoId = msg.msg.slice(equalIndex+1)
+        var secondHalfUrl = "?autoplay=1\u0022></iframe>";
+        var fullUrl = (firstHalfUrl + videoId + secondHalfUrl);
+        // alert(fullUrl);
+        // $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
+        theQ.push("" + videoId);
+        // alert(theQ);
+        $('#messages').append($('<li>').text(msg.user + " has just added a YouTube video to your queue."));
+        updateScroll();
+        return false;
+      }
 
-        var track_url = msg;
-        SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
-            oEmbed.height = 315;
-            oEmbed.width = 420;
-            console.log(oEmbed.html);
-            // var changeSize = oEmbed.html;
+      // if (msg.msg.search("soundcloud") === 8) {
+      //   console.log("sound cloud event was hit");
+      //   $('#messages').append($('<li>').text(msg.user + " " + "has just added a SoundCloud song to your queue."));
+      //   updateScroll();
+      //   var track_url = msg.msg;
+      //   SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
+            
+      //       console.log(oEmbed.title);
+      //       // var changeSize = oEmbed.html;
 
-            $('#media').html(sanitizeSoundObject(oEmbed.html));
-            // sanitizeSoundObject(oEmbed.html)
-          // console.log('oEmbed response: ' + sanitizeSoundObject(oEmbed.html));
-        });
+      //       $('#media').html(sanitizeSoundObject(oEmbed.html));
+      //       // sanitizeSoundObject(oEmbed.html)
+      //     // console.log('oEmbed response: ' + sanitizeSoundObject(oEmbed.html));
+      //   });
 
 
        
-      }
+      // }
       else {
         
-        $('#messages').append($('<li>').text(msg.user + ": " + msg.msg));
-        updateScroll();
+        if (msg.msg) {
+            $('#messages').append($('<li>').text(msg.user + ": " + msg.msg));
+            updateScroll();
+        }
+
       } 
       
       return false;
     });
 
 
-    
-    
-    // socket.on('youtube detected', function(msg){
-    //   var firstHalfUrl = "<iframe width=\u0022420\u0022 height=\u0022315\u0022src=\u0022http://www.youtube.com/embed/"
-    //   var equalIndex = msg.indexOf("=");
-    //   var videoId = msg.slice(equalIndex+1)
-    //   var secondHalfUrl = "?autoplay=1\u0022></iframe>"
-    //   $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
-
-    //   updateScroll();
-
-    //   // MAKE AJAX CALL HERE 
-    //   return false;
-    //   // CALL A FUNCTION THAT GETS THE YOUTUBE VIDEO (AJAX) (e.g. fetchYoutube())
-    // });
-    // socket.on('soundcloud detected', function(msg){
-    //    // var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022450\u0022 scrolling=\u0022no\u0022 frameborder=\u0022no\u0022 src=\u0022https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/"
-    //    // var secondHalfUrl = "&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true\u0022></iframe>"
-    //    // var songId =
-    //    console.log("sound cloud event was hit");
-    //    curl('www.google.com', function(err) {
-    //       console.info("hello");
-    //     });
-
-    //   $('#media').html($('<li>').text("SOUNDCLOUD DETECTED"));
-    //   updateScroll();
-    //   // MAKE AJAX CALL HERE 
-    //   return false;
-    //   // CALL A FUNCTION THAT GETS THE SoundCloud song (AJAX) (e.g. fetchSoundcloud())
-    // });
     // END SOCKET WORK
 });
