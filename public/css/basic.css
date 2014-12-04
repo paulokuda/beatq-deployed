@@ -69,9 +69,10 @@ form button {
 }
 
 .main-container {
-    margin-left: 22%;
+    margin-left: 15%;
     margin-right: 20%;
     margin-top: 5%;
+    height: auto;
 
 }
 
@@ -87,6 +88,17 @@ form button {
 }
 .center {
     text-align: center;
+}
+
+#m {
+    width: 300px;
+    /*margin-top: -1px;*/
+    margin-left: -1px;
+}
+
+#chat-wrap {
+    height: 390px;
+    
 }
 
 

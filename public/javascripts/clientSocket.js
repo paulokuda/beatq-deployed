@@ -6,26 +6,16 @@ var secondHalfUrl = "?autoplay=0\u0022></iframe>";
 $(document).ready(function(){
     
     $('#nickname').focus(function(){
-        $(this).removeAttr('placeholder');
+        if ($(this).val() != ""){
+            $(this).removeAttr('placeholder');
+        }
     });
    
     // CLIENT-SIDE JS
 
-
-    SC.initialize({
-          client_id: '0038e5ddad7a0309d5438907abbdde2b'
-    });
-    
-    
-
     $('.main-container').hide();
     $('#nickWrap').hide();
     
-
-  
-
-    
-
     document.getElementById("new-room").onclick = function(){
         $('#first-page').slideToggle();
         $('#nickWrap').show();
@@ -66,8 +56,6 @@ $(document).ready(function(){
 
                 $('#nickWrap').slideUp();
                 $('.main-container').show();
-
-
             }
             else {
                 console.log('unsuccessful nickname');
@@ -99,7 +87,7 @@ $(document).ready(function(){
     socket.on('chat message', function(msg){
     
 
-      if ((msg.msg.search("youtube") === 12) && (theQ.length === 0)) {  
+      if (msg.msg.search("youtube") === 12) {  
         
         var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/"
         var equalIndex = msg.msg.indexOf("=");
@@ -109,26 +97,12 @@ $(document).ready(function(){
         theQ.push("" + videoId);
         // alert(fullUrl);
         // $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
-        $('#messages').append($('<li>').text(msg.user + " has just added a YouTube video to your queue."));
+        $('#show-queue').html(theQ);
+        $('#messages').append($('<li>').text(msg.user + " has just added a YouTube video to the queue."));
         updateScroll();
         return false;
       }
-      if ((msg.msg.search("youtube") === 12) && (theQ.length != 0)) {  
-        
-        var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/"
-        var equalIndex = msg.msg.indexOf("=");
-        var videoId = msg.msg.slice(equalIndex+1)
-        var secondHalfUrl = "?autoplay=1\u0022></iframe>";
-        var fullUrl = (firstHalfUrl + videoId + secondHalfUrl);
-        // alert(fullUrl);
-        // $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
-        theQ.push("" + videoId);
-        // alert(theQ);
-        $('#messages').append($('<li>').text(msg.user + " has just added a YouTube video to your queue."));
-        updateScroll();
-        return false;
-      }
-
+     
       // if (msg.msg.search("soundcloud") === 8) {
       //   console.log("sound cloud event was hit");
       //   $('#messages').append($('<li>').text(msg.user + " " + "has just added a SoundCloud song to your queue."));

@@ -73,8 +73,8 @@
   </div>
   <div class="main-container">
     <div class="row">
-      <div class="col s12 m6" id="media">
-          <div id="player"></div>
+      <!-- <div id="media"> -->
+          <div id="player" class="col s12 m8"></div>
      <script src="http://www.youtube.com/player_api"></script>
      <script>
       // create youtube player
@@ -83,7 +83,7 @@
         function onYouTubePlayerAPIReady() {
             player = new YT.Player('player', {
               height: '390',
-              width: '395',
+              width: '400',
               videoId: 'JOlCUtxQW0Y',
               events: {
                 'onReady': onPlayerReady,
@@ -94,6 +94,7 @@
 
         // autoplay video
         function onPlayerReady(event) {
+          $('#show-queue').html(theQ);
             if (theQ.length != 0){
               event.target.playVideo();
             }
@@ -104,15 +105,17 @@
             if(event.data === 0) {
                 player.loadVideoById(theQ[0]);
                 if (theQ.length > 1){
-                  theQ.shift();
+                  theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay
                 }
+                $('#show-queue').html(theQ);
             };
 
         }
       
     
      </script>
-      </div>
+      <!-- </div> -->
+<div id="chat-wrap">
       <div class="col s12 m3">
         <ul id="messages"></ul>
         <form action="#">
@@ -123,6 +126,16 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="main-container">
+    <div class="col s8" id="show-queue">
+      <script>
+
+      </script>
+    </div>
+</div>
+
 
             
 
