@@ -1,7 +1,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body { 
-    font: 13px Helvetica, Arial; 
+    font: 13px Helvetica, Arial;
+    background-color: #eee; 
 
 }
 form { 
@@ -25,15 +26,17 @@ form button {
     
 }
 #messages { 
-    list-style-type: none; 
-    border-top: solid;
+    list-style-type: none;
+    
+    /*border-top: solid;
     border-left: solid;
     border-right: solid;
-    border-width: 1px;
+    border-width: 1px;*/
     /*border-color: #eee;*/
-    min-width: 300px;
-    min-height: 330px;
-    max-height: 330px;
+    /*min-width: 300px;*/
+    min-height: 289px;
+    max-height: 289px;
+    width: 100%;
 
     overflow: scroll;
     /*border-width: 5px;*/
@@ -42,26 +45,19 @@ form button {
 }
 #messages li { 
     /*border-style: solid;*/
-    font-family: 'Merriweather', serif;
+    /*font-family: 'Merriweather', serif;*/
+    font-family: 'Roboto', sans-serif;
     padding-top: 7px;
     padding-left: 4px;
     padding-bottom: 7px;
+
+
 }
 #messages li:nth-child(odd) { 
     
     background: #eee; 
 }
-#chat-box {
-    width: 66%;
-    padding-left: 66%;
-    /*padding-left: 47%;
-    padding-top: 10%;*/
-    /*border: solid;
-    border-color: black;*/
-    display: inline-block;
-    /*position: */
 
-}
 #media {
     border: solid;
     border-width: 1px;
@@ -70,7 +66,7 @@ form button {
 
 .main-container {
     margin-left: 15%;
-    margin-right: 20%;
+    margin-right: 15%;
     margin-top: 5%;
     height: auto;
 
@@ -91,14 +87,86 @@ form button {
 }
 
 #m {
-    width: 300px;
+    width: 96%;
     /*margin-top: -1px;*/
-    margin-left: -1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    text-align: left;
+    padding-left: 5px;
+    /*margin-top: -20px;*/
 }
 
 #chat-wrap {
     height: 390px;
+    background-color: white;
+
+}
+
+#show-queue {
+    font-size: 16px;
+    /*text-transform: uppercase;*/
+    /*font-family: 'Roboto Condensed', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+    margin-top: -1px;
+    padding-left: 2%;
+
+}
+#queue-count {
+    /*font-size: 16px;*/
+    display: inline-block;
+    /*text-transform: uppercase;*/
+    /*font-family: 'Roboto Condensed', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+    /*margin-top: -1px;
+    padding-left: 2%;*/
+    /*text-align: right;*/
+}
+
+.box-label #queue-count {
+    text-align: right;
+}
+
+.box-label-details {
+    background: #ca312c;
+color: #fff;
+/*width: 158px;*/
+width: 100%;
+font-size: 1.2em;
+font-weight: bold;
+padding: 7px 0px 5px 10px;
+margin-top: 10px;
+}
+
+.box-label {
+    background: #ca312c;
+color: #fff;
+/*width: 158px;*/
+width: 100%;
+font-size: 1.2em;
+font-weight: bold;
+padding: 7px 0px 5px 10px;
+
+}
+
+#details-box {
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+#chat-box {
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
     
+}
+#chat-content {
+    /*background-color: white;*/
+}
+
+#details-row{
+    padding-top: 4%;
 }
 
 

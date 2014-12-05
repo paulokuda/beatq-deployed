@@ -56,6 +56,7 @@ $(document).ready(function(){
 
                 $('#nickWrap').slideUp();
                 $('.main-container').show();
+
             }
             else {
                 console.log('unsuccessful nickname');
@@ -95,10 +96,11 @@ $(document).ready(function(){
         var secondHalfUrl = "?autoplay=1\u0022></iframe>";
         var fullUrl = (firstHalfUrl + videoId + secondHalfUrl);
         theQ.push("" + videoId);
+        $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
         // alert(fullUrl);
         // $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
-        $('#show-queue').html(theQ);
-        $('#messages').append($('<li>').text(msg.user + " has just added a YouTube video to the queue."));
+        // $('#show-queue').html(theQ);
+        $('#messages').append($('<li>').html('<b>' + msg.user + '</b>' + " has just added a YouTube video to the q."));
         updateScroll();
         return false;
       }
@@ -124,7 +126,7 @@ $(document).ready(function(){
       else {
         
         if (msg.msg) {
-            $('#messages').append($('<li>').text(msg.user + ": " + msg.msg));
+            $('#messages').append($('<li>').html('<b>' + msg.user + '</b>' + ": " + msg.msg));
             updateScroll();
         }
 
