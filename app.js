@@ -15,9 +15,6 @@ var express = require('express'),
   morgan = require('morgan'),
   app = express();
 
-// var curl = require('node-curl');
-var request = require('request');
-var SpotifyWebApi = require('spotify-web-api-node');
   
 
 // Set the views directory
@@ -45,7 +42,7 @@ app.get("/get/:url?", function(req, response) {
 
 
 
-app.get('/:collection/:operation', dbRoutes.modify);
+// app.get('/:collection/:operation', dbRoutes.modify);
 
 nicknames = [];
 /*1*/ var httpServer = http.Server(app);

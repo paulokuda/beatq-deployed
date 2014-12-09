@@ -6291,13 +6291,15 @@ ul.tabs .indicator {
 
 ul.collapsible {
   border-top: 1px solid #eee;
+  margin-top: 10px;
+
 }
 
 .collapsible-header {
   display: block;
   cursor: pointer;
-  height: 3rem;
-  line-height: 3rem;
+  height: 1.74rem;
+  line-height: 1.74rem;
   padding: 0 1rem;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
@@ -6305,7 +6307,7 @@ ul.collapsible {
 .collapsible-header i {
   width: 2rem;
   font-size: 1.6rem;
-  line-height: 3rem;
+  line-height: 1.74rem;
   display: block;
   float: left;
   text-align: center;
@@ -6319,6 +6321,7 @@ ul.collapsible {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  background-color: white;
 }
 .collapsible-body p {
   margin: 0;
@@ -6407,7 +6410,7 @@ input:focus {
 }
 
 #setNickname input:focus {
-  
+
 }
 
 /***************

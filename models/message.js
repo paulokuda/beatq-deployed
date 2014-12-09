@@ -1,5 +1,13 @@
 var util = require("util");
 var mongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/beatq';
+var mongoDB; // The connected database
+// Use connect method to connect to the Server
+mongoClient.connect(url, function(err, db) {
+  if (err) doError(err);
+  console.log("Connected correctly to server");
+  mongoDB = db;
+});
 /*
  * This is the connection URL
  * Give the IP Address / Domain Name (else localhost)
@@ -8,17 +16,55 @@ var mongoClient = require('mongodb').MongoClient;
  */
 
 
-
-var musicQueue = [];
-
-
 var Message = {
-    // this.x = x;    
+    // this.x = x;   
+    incrementTotalUsers : function(count){
+       mongoDB.collection("totalUsers").insert([{count: count}], {
+              safe: true
+            }, 
+            function(err, crsr) {
+            if (err) console.log(err);
+            console.log("completed mongo insert");
+            
+            console.log("done with insert callback");
+            console.log(crsr);
+        });
+    },
+
+    getTotalUsers : function(){
+        // mongoDB.collection("totalUsers").find().sort({count: -1}).limit(1),
+        // function(err, crsr) {
+        //     if (err) console.log(err);
+        //     console.log("completed mongo get");
+            
+        //     console.log("done with get callback");
+        //     // console.log(crsr);
+        // });
+        // return mongoDB.collection("totalUsers").find().sort({count: -1}).limit(1);
+        
+        mongoDB.collection("totalUsers").find(
+            {count: 3}, 
+            {
+              upsert: true
+            }, 
+            function(err, crsr) {
+              if (err) {console.log("err");}
+              else {
+                // callback(crsr);
+                console.log("found the player");
+                // console.log("LOLOL");
+              }
+        });
+    }
+
+
+
+    
                       
 
-    getSoundcloudUrl : function(msg) {
+    // getSoundcloudUrl : function(msg) {
         
-    }
+    // }
     // getPlayer : function(tennis_name) {
     //     console.log("get player method was hit in tennis.js");
     //     // if (!tennis_name){

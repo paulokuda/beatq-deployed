@@ -3,8 +3,22 @@ var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0
 var secondHalfUrl = "?autoplay=0\u0022></iframe>";
 
 
+
 $(document).ready(function(){
+
+    // socket.emit('index page');
+    $('.collapsible').collapsible();
+    $('#collapse').onclick = function() {
+        $('about-text').html("Click To View");
+    }
+
+    document.getElementById("info-box").onclick = function(){
+        // $('#about-text').html("Create queues of music for others to listen to simply by entering YouTube links through the chat box. Users will go through their queues at different times, depending on when they finish videos. Enjoy! <br><br> <div id=&#34;collapse&#34;>Collapse</div>");
+    }
+        
     
+
+
     $('#nickname').focus(function(){
         if ($(this).val() != ""){
             $(this).removeAttr('placeholder');
@@ -14,16 +28,14 @@ $(document).ready(function(){
     // CLIENT-SIDE JS
 
     $('.main-container').hide();
-    $('#nickWrap').hide();
+    // $('#nickWrap').hide();
     
     document.getElementById("new-room").onclick = function(){
         $('#first-page').slideToggle();
-        $('#nickWrap').show();
+        // $('#nickWrap').show();
 
     }
     
-
-
 
     var scrolled = false;
     function updateScroll(){ //this function will update the messages so that the message at the bottom of the chat is always the most recent
@@ -39,27 +51,24 @@ $(document).ready(function(){
     // END CLIENT-SIDE JS
 
 
-
     // ALL SOCKET WORK
 
     
     var socket = io();
-    var nickForm = $('#setNickname');
-    var nickError = $('#nickError');
-    var nickBox = $('#nickname');
-    $('#setNickname').submit(function(e) {
+    socket.emit('index page');
+    $('#setUsername').submit(function(e) {
         e.preventDefault();
         socket.emit('new user', $('#nickname').val(), function(data) {
             if (data) {
-                // console.log('successful nickname');
+                // console.log(data);
                 // alert(JSON.stringify(nickBox));
-
-                $('#nickWrap').slideUp();
+                    
+                $('#first-page').slideUp();
                 $('.main-container').show();
 
             }
             else {
-                console.log('unsuccessful nickname');
+                alert("That username has already been chosen! Please enter another.")
             }
         });
         $('#nickname').val('');
@@ -71,6 +80,12 @@ $(document).ready(function(){
       $('#m').val('');
       return false;
     });
+
+
+    socket.on('index page', function(data){
+        // alert(data.users);
+    });
+
 
    
     socket.on('usernames', function(data){
@@ -86,7 +101,7 @@ $(document).ready(function(){
     });
 
     socket.on('chat message', function(msg){
-    
+        
 
       if (msg.msg.search("youtube") === 12) {  
         
@@ -105,24 +120,6 @@ $(document).ready(function(){
         return false;
       }
      
-      // if (msg.msg.search("soundcloud") === 8) {
-      //   console.log("sound cloud event was hit");
-      //   $('#messages').append($('<li>').text(msg.user + " " + "has just added a SoundCloud song to your queue."));
-      //   updateScroll();
-      //   var track_url = msg.msg;
-      //   SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
-            
-      //       console.log(oEmbed.title);
-      //       // var changeSize = oEmbed.html;
-
-      //       $('#media').html(sanitizeSoundObject(oEmbed.html));
-      //       // sanitizeSoundObject(oEmbed.html)
-      //     // console.log('oEmbed response: ' + sanitizeSoundObject(oEmbed.html));
-      //   });
-
-
-       
-      // }
       else {
         
         if (msg.msg) {

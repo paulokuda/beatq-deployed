@@ -2,9 +2,6 @@
 <html>
   <head>
     <META HTTP-EQUIV="Access-Control-Allow-Origin" value="*">
-    <!--<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="javascripts/clientSocket.js"></script>-->
     <link rel="stylesheet" href="css/basic.css" type="text/css">
     <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
     <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
@@ -35,117 +32,127 @@
   </div>
   <div class="row">
       <div class="col s12 m12">
-        <br>
-        <center>
-          <button class="btn waves-effect waves-light" type="submit" name="action" id="new-room">New Room</button>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button class="btn waves-effect waves-light" type="submit" name="action">Join Room</button>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button class="btn waves-effect waves-light" type="submit" name="action">About</button>
-        </center>
+        <div class="z-depth-1" id="details-box">
+          <div class="box-label-details">About</div><br>
+          <br>
+          <center>
+            <p id="index-text">
+            Enter the chat room and start listening to queues of music populated by users. Having a crowd-sourced queue allows users to listen to a unique playlist of songs without you having to look for them yourselves. The first video is pre-loaded, but once that video reaches the end, it will cue the next song in the queue. Just enter your name below and enjoy!</p><br><br>
+            <form id="setUsername">
+              <input id="nickname" placeholder="What is your name?"></input>
+            </form>
+            <button class="btn waves-effect waves-light" type="submit" name="action" id="new-room"><i class="mdi-av-fast-forward right"></i>Enter Room</button>
+            
+          </center>
+        </div>
+       </div>
       </div>
   </div>
 </div>
 
 
-
-
-  <div id="nickWrap" class="z-depth-1">
-    <p id="nickError"></p>
+<!-- <div id="nickWrap" class="z-depth-1">
+  <p id="nickError"></p>
     <form id="setNickname">
-      <input size="35" id="nickname" placeholder="Enter name..."></input>
+      <input id="nickname" placeholder="Enter name..."></input>
       <center><button class="btn waves-effect waves-light" type="submit" name="action">Submit</button></center>
     </form>
-  </div>
+</div> -->
 
-  <div class="main-container">
-    <div class="row">
-      <!-- <div id="media"> -->
-          <div id="player" class="col s12 m8"></div>
+<div class="main-container">
+  <div class="row">
+    <div id="player" class="col s12 m8"></div>
+  <!--   It's bad form to not separate my concerns here; however, the way the YouTube API is set up, I was not able to render a player object unless I included the script in my HTML file -->
      <script src="http://www.youtube.com/player_api"></script>
      <script>
       // create youtube player
-      
         var player;
         function onYouTubePlayerAPIReady() {
             player = new YT.Player('player', {
               height: '390',
               width: '380',
-              videoId: 'JOlCUtxQW0Y',
+              videoId: 'j8WSspA9gB4',
               events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
               }
             });
         }
-
         // autoplay video
         function onPlayerReady(event) {
+          console.log(event.target.A.videoData);
+            // $('#about-text').append(player.likeCount);
             $('#show-queue').html(event.target.A.videoData.title);
             $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
             if (theQ.length != 0){
               event.target.playVideo();
             }
         }
-
         // when video ends
-        function onPlayerStateChange(event) {   
-              
+        function onPlayerStateChange(event) {      
             if(event.data === 0) {
-                if (theQ.length <= 1) {
-                  alert('There are no more songs in the Q! The last song will loop until another video is added.');
-                }
-                player.loadVideoById(theQ[0]);
                 if (theQ.length > 1){
-
-                  theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)
-                  
+                  theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)   
                 }
-                $('#show-queue').append(event.target.A.videoData.title);
+                if (theQ.length > 0) {
+                  // alert('There are no more songs in the Q! The last song will loop until another video is added.');
+                  player.loadVideoById(theQ[0]);
+                  $('#show-queue').append(event.target.A.videoData.title);
+                }
                 
-
             };
             $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
             $('#show-queue').html(event.target.A.videoData.title);
-
         }
-      
-    
      </script>
       <!-- </div> -->
 <!-- <div id="chat-wrap"> -->
-      <div class="col s12 m4" id="chat-content">
-        <div class="z-depth-1" id="chat-box">
-              <div class="box-label">Chat <div id="queue-count" align="right"></div></div>
+    <div class="col s12 m4" id="chat-content">
+      <div class="z-depth-1" id="chat-box">
+        <div class="box-label">Chat <div id="queue-count" align="right"></div></div><hr>
        <!--  <div class="z-depth-1" id="details-box"> -->
-                <ul id="messages"></ul>
-                <form action="#">
-                  <input id="m" autocomplete="off" placeholder="Type your message here..."/>
-                  <!-- <a href="" class="" id="chat-send">Send</a> -->
-                </form>
+          <ul id="messages"></ul>
+          <hr>
+          <form action="#">
+            <input id="m" placeholder="Type here..." autocomplete="off"/>
+            <!-- <a href="" class="" id="chat-send">Send</a> -->
+          </form>
         </div>
         <!-- </div> -->
       <!-- </div> -->
       </div>
         
-        <div class="row" id="details-row">
-           <div class="col s12 m8">
-            <div class="z-depth-1" id="details-box">
-              <div class="box-label-details">Details</div><br>
-                <div id="show-queue">
-                  
-                </div>
-                
+      <div class="row" id="details-row">
+        <div class="col s12 m8">
+          <div class="z-depth-1" id="details-box">
+            <div class="box-label-details">Title</div><br>
+              <div id="show-queue">
+               
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="z-depth-1" id="info-box">
+              <ul class="collapsible">
+                <li>
+                  <div class="collapsible-header"><i class="mdi-communication-live-help"></i>How do I use this?</div>
+                  <div class="collapsible-body"><p>Create queues of music for others to listen to simply by entering YouTube links through the chat box. In the top of chat bar, you will be able to see how many songs either you or others have loaded into your queue. Users will go through their queues at different times, depending on when they finish videos. If there is only 1 video left in the queue, it will loop until another video is added.Enjoy!</p></div>
+                </li>
+                <li>
+                  <div class="collapsible-header"><i class="mdi-image-audiotrack"></i>Why was this built?</div>
+                  <div class="collapsible-body"><p>Being that I am someone who listens to music everyday, I am constantly looking for new music. As I started to do it more, I realized how inefficient sharing links through Facebook chat got and wanted to create a more streamline process. With this application, I hope to aid the sharing of music with others.</p></div>
+                </li>
+                <li>
+                  <div class="collapsible-header"><i class="mdi-action-perm-identity"></i>Who built it?</div>
+                  <div class="collapsible-body"><p><b>Developer: </b>Paul Okuda <br> <b>Contact: </b>paulyokuda@gmail.com</p></div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-
-
+      </div>
     </div>
-  <!-- </div> -->
-
-
-
 </div>
 
     
