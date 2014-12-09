@@ -13,28 +13,31 @@ var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express'),
   http = require('http'),
   morgan = require('morgan'),
-  app = express();
+  // app = express();
+
+var self = this;  
+  self.app = express();
 
   
 
 // Set the views directory
-app.set('views', __dirname + '/views');
+self.app.set('views', __dirname + '/views');
 // Define the view (templating) engine
-app.set('view engine', 'ejs');
+self.app.set('view engine', 'ejs');
 // Log requests
-app.use(morgan('tiny'));
+self.app.use(morgan('tiny'));
 
 // This is where your normal app.get, app.put, etc middleware would go.
 
 // Handle static files
-app.use(express.static(__dirname + '/public'));
+self.app.use(express.static(__dirname + '/public'));
 
 
 // app.get('/', function(request, response){
 //   response.send('<h1>Hello world</h1>');
 // });
 
-app.get("/get/:url?", function(req, response) {
+self.app.get("/get/:url?", function(req, response) {
 
    
 });
@@ -45,10 +48,10 @@ app.get("/get/:url?", function(req, response) {
 // app.get('/:collection/:operation', dbRoutes.modify);
 
 nicknames = [];
-/*1*/ var httpServer = http.Server(app);
+// /*1*/ var httpServer = http.Server(app);
 /*2*/ var sio =require('socket.io');
 /*3*/ var io = sio(httpServer);
-/*4*/ httpServer.listen(50000, function() {console.log('Listening on 50000');});
+// /*4*/ httpServer.listen(50000, function() {console.log('Listening on 50000');});
 
 
 

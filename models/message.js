@@ -3,11 +3,26 @@ var mongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/beatq';
 var mongoDB; // The connected database
 // Use connect method to connect to the Server
-mongoClient.connect(url, function(err, db) {
+var connection_string = '127.0.0.1:27017/beatq';
+// if OPENSHIFT env variables are present, use the available connection info:
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+  process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+  process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+  process.env.OPENSHIFT_APP_NAME;
+}
+
+
+mongoClient.connect('mongodb://'+connection_string, function(err, db) {
   if (err) doError(err);
   console.log("Connected correctly to server");
   mongoDB = db;
 });
+
+
+
+
 /*
  * This is the connection URL
  * Give the IP Address / Domain Name (else localhost)
