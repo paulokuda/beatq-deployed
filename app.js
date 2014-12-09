@@ -48,10 +48,11 @@ self.app.get("/get/:url?", function(req, response) {
 // app.get('/:collection/:operation', dbRoutes.modify);
 
 nicknames = [];
-// /*1*/ var httpServer = http.Server(app);
+/*1*/ var httpServer = http.Server(self.app);
 /*2*/ var sio =require('socket.io');
 /*3*/ var io = sio(httpServer);
-// /*4*/ httpServer.listen(50000, function() {console.log('Listening on 50000');});
+/*4*/ httpServer.listen(process.env.OPENSHIFT_NODEJS_PORT || 80);
+
 
 
 
