@@ -11,7 +11,6 @@
 var dbRoutes = require('./routes/dbRoutes'); 
 var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express'),
-  http = require('http').Server(app),
   morgan = require('morgan')
   // app = express();
 
@@ -27,6 +26,7 @@ var express = require('express'),
 var SimpleStaticServer = function() {
     var self = this;  
     self.app = express();
+    http = require('http').Server(self.app)
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
@@ -55,7 +55,7 @@ var SimpleStaticServer = function() {
      console.log('host'+ self.host);
 
     //  Start listening on the specific IP and PORT
-    self.app.listen(self.port, self.ipaddress);
+    http.listen(self.port, self.ipaddress);
   };
 }; 
 
