@@ -13,8 +13,6 @@
     "morgan": "^1.4.1",
     "socket.io": "^1.2.0",
     "spotify-web-api-node": "^1.1.0"
-  },
-  "scripts": {  
-   "start": "node $relative_path_from_repo_dir/app.js"
   }
+  "main": "app.js"
 }

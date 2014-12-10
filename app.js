@@ -7,6 +7,11 @@
  * way just to make it easier to differentiate the two.
  */
 
+ var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+
+
+
 // Normal Express requires...
 var dbRoutes = require('./routes/dbRoutes'); 
 var messageRoutes = require('./routes/serverSocket.js');
@@ -14,33 +19,6 @@ var express = require('express'),
   http = require('http'),
   morgan = require('morgan'),
   // app = express();
-
-var self = this;  
-  self.app = express();
-
-  
-
-// Set the views directory
-self.app.set('views', __dirname + '/views');
-// Define the view (templating) engine
-self.app.set('view engine', 'ejs');
-// Log requests
-self.app.use(morgan('tiny'));
-
-// This is where your normal app.get, app.put, etc middleware would go.
-
-// Handle static files
-self.app.use(express.static(__dirname + '/public'));
-
-
-// app.get('/', function(request, response){
-//   response.send('<h1>Hello world</h1>');
-// });
-
-self.app.get("/get/:url?", function(req, response) {
-
-   
-});
 
 
 
@@ -51,10 +29,62 @@ nicknames = [];
 /*1*/ var httpServer = http.Server(self.app);
 /*2*/ var sio =require('socket.io');
 /*3*/ var io = sio(httpServer);
-/*4*/ httpServer.listen(process.env.OPENSHIFT_NODEJS_PORT || 80);
+/*4*/ httpServer.listen(port, ipaddress);
 
 
 
 
 var gameSockets = require('./routes/serverSocket.js');
 gameSockets.init(io);
+
+
+
+
+
+
+
+var SimpleStaticServer = function() {
+    // Set the views directory
+    self.app.set('views', __dirname + '/views');
+    // Define the view (templating) engine
+    self.app.set('view engine', 'ejs');
+    // Log requests
+    self.app.use(morgan('tiny'));
+
+    // Handle static files
+    self.app.use(express.static(__dirname + '/public'));
+
+
+  // set self to the scope of the class
+  var self = this;  
+  
+  self.app = express();
+  //    self.app.use(connect(connect.basicAuth('j', 'jmjm')))
+  self.app.use(morgan('[:date] :method :url :status')); // Log requests
+  self.app.use(express.static(path.join(__dirname, 'public'))); // Process static files
+
+
+
+  // Start the server (starts up the sample application).
+  self.start = function() {
+  
+     self.ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+     self.port      = process.env.OPENSHIFT_NODEJS_PORT || 33333;
+     self.host      = process.env.OPENSHIFT_MONGODB_DB_HOST;
+
+     console.log('host'+ self.host);
+
+    //  Start listening on the specific IP and PORT
+    self.app.listen(self.port, self.ipaddress, function() {
+      console.log('%s: Node server started on %s:%d ...',
+        Date(Date.now() ), self.ipaddress, self.port);
+    });
+  };
+}; 
+
+
+/**
+ *  main():  Main code.
+ */
+ var sss = new SimpleStaticServer();
+ sss.start();
