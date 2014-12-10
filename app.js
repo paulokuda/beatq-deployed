@@ -9,7 +9,7 @@
 
 // Normal Express requires...
 var dbRoutes = require('./routes/dbRoutes'); 
-
+var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express');
 var morgan = require('morgan');
 
@@ -29,9 +29,10 @@ var SimpleStaticServer = function() {
     var self = this;  
     self.app = express();
     http = require('http').Server(self.app)
-    var io = require('socket.io').listen(http)
-    var messageRoutes = require('./routes/serverSocket.js');
+    var sio = require('socket.io').listen(http);
+    var io = sio(http.Server(self.app));
     messageRoutes.init(io);
+
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
@@ -70,4 +71,3 @@ var SimpleStaticServer = function() {
  */
  var sss = new SimpleStaticServer();
  sss.start();
-
