@@ -25,17 +25,17 @@ var express = require('express'),
 
 // app.get('/:collection/:operation', dbRoutes.modify);
 
-nicknames = [];
-/*1*/ var httpServer = http.Server(self.app);
-/*2*/ var sio =require('socket.io');
-/*3*/ var io = sio(httpServer);
-/*4*/ httpServer.listen(port, ipaddress);
+// nicknames = [];
+// /*1*/ var httpServer = http.Server(self.app);
+// /*2*/ var sio =require('socket.io');
+// /*3*/ var io = sio(httpServer);
+// /*4*/ httpServer.listen(port, ipaddress);
 
 
 
 
-var gameSockets = require('./routes/serverSocket.js');
-gameSockets.init(io);
+
+// messageRoutes.init(io);
 
 
 
