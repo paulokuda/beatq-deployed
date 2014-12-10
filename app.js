@@ -27,7 +27,7 @@ var morgan = require('morgan');
 
 var SimpleStaticServer = function() {
     var self = this;  
-    var self.app = express();
+    self.app = express();
     var http = require('http').Server(self.app);
     var sio = require('socket.io').listen(http);
     var io = sio(http.Server(self.app));
