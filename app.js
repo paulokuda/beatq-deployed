@@ -52,7 +52,7 @@ var SimpleStaticServer = function() {
   self.start = function() {
   
      self.ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-     self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+     self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8000;
      self.host      = process.env.OPENSHIFT_MONGODB_DB_HOST;
 
      console.log('host'+ self.host);
