@@ -7,11 +7,6 @@
  * way just to make it easier to differentiate the two.
  */
 
- var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
-
-
 // Normal Express requires...
 var dbRoutes = require('./routes/dbRoutes'); 
 var messageRoutes = require('./routes/serverSocket.js');
@@ -35,7 +30,7 @@ var express = require('express'),
 
 
 
-// messageRoutes.init(io);
+messageRoutes.init(io);
 
 
 
@@ -43,7 +38,7 @@ var express = require('express'),
 
 
 
-var SimpleStaticServer = function() {
+function SimpleStaticServer() {
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
