@@ -12,6 +12,8 @@ var dbRoutes = require('./routes/dbRoutes');
 var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express'),
   morgan = require('morgan')
+
+var io = require('socket.io').listen(http)
   // app = express();
 
 // app.get('/:collection/:operation', dbRoutes.modify);

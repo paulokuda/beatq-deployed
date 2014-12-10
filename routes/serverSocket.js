@@ -14,7 +14,7 @@ var util = require("util");
 exports.init = function(io) {
 	var totalUsers = 0; // keep track of the number of users
 
-    io.set("origins","*");
+    
   // When a new connection is initiated
 	io.sockets.on('connection', function (socket) {
         ++totalUsers;
