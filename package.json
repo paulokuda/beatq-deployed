@@ -8,6 +8,10 @@
   "engines": {
     "node": ">=0.10"
   },
+  "permissions": {
+  "http://www.youtube.com/*",
+  "https://www.youtube.com/*"
+  },
   "dependencies": {
     "express": "^4.10.2",
     "morgan": "^1.4.1",
