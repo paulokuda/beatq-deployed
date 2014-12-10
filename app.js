@@ -27,11 +27,11 @@ var morgan = require('morgan');
 
 var SimpleStaticServer = function() {
     var self = this;  
-    self.app = express();
-    http = require('http').Server(self.app)
+    var self.app = express();
+    var http = require('http').Server(self.app);
     var sio = require('socket.io').listen(http);
     var io = sio(http.Server(self.app));
-    messageRoutes.init(io);
+    // messageRoutes.init(io);
 
     // Set the views directory
     self.app.set('views', __dirname + '/views');
