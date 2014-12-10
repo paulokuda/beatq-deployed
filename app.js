@@ -8,7 +8,10 @@
  */
 
 // Normal Express requires...
-
+var dbRoutes = require('./routes/dbRoutes'); 
+var messageRoutes = require('./routes/serverSocket.js');
+var express = require('express'),
+  morgan = require('morgan')
   // app = express();
 
 // app.get('/:collection/:operation', dbRoutes.modify);
@@ -24,10 +27,6 @@ var SimpleStaticServer = function() {
     var self = this;  
     self.app = express();
     http = require('http').Server(self.app)
-    var dbRoutes = require('./routes/dbRoutes'); 
-    var messageRoutes = require('./routes/serverSocket.js');
-    var express = require('express'),
-      morgan = require('morgan')
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
@@ -41,7 +40,7 @@ var SimpleStaticServer = function() {
 
   
   //    self.app.use(connect(connect.basicAuth('j', 'jmjm')))
-  // self.app.use(morgan('[:date] :method :url :status')); // Log requests
+  self.app.use(morgan('[:date] :method :url :status')); // Log requests
   // self.app.use(express.static(self.path.join(__dirname, 'public'))); // Process static files
 
 
