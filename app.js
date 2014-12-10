@@ -28,11 +28,8 @@ var morgan = require('morgan');
 var SimpleStaticServer = function() {
     var self = this;  
     self.app = express();
-    var http = require('http').Server(self.app);
-    var sio = require('socket.io').listen(http);
-    var io = sio(http.Server(self.app));
-    // messageRoutes.init(io);
-
+    http = require('http').Server(self.app)
+    var io = require('socket.io').listen(http)
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
