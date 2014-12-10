@@ -11,7 +11,7 @@
 var dbRoutes = require('./routes/dbRoutes'); 
 var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express'),
-  http = require('http'),
+  http = require('http').Server(app),
   morgan = require('morgan')
   // app = express();
 
@@ -49,16 +49,13 @@ var SimpleStaticServer = function() {
   self.start = function() {
   
      self.ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-     self.port      = process.env.OPENSHIFT_NODEJS_PORT || 33333;
+     self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
      self.host      = process.env.OPENSHIFT_MONGODB_DB_HOST;
 
      console.log('host'+ self.host);
 
     //  Start listening on the specific IP and PORT
-    self.app.listen(self.port, self.ipaddress, function() {
-      console.log('%s: Node server started on %s:%d ...',
-        Date(Date.now() ), self.ipaddress, self.port);
-    });
+    self.app.listen(self.port, self.ipaddress);
   };
 }; 
 
