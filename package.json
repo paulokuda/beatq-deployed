@@ -1,6 +1,6 @@
 {
-  "name": "countPlayers",
-  "description": "Example of socket.io use",
+  "name": "BeatQ",
+  "description": "Video Sharing Application",
   "scripts": {
     "start": "app.js"
   },
@@ -11,8 +11,7 @@
   "dependencies": {
     "express": "^4.10.2",
     "morgan": "^1.4.1",
-    "socket.io": "^1.2.0",
-    "spotify-web-api-node": "^1.1.0"
+    "socket.io": "^1.2.0"
   },
   "main": "app.js"
 }

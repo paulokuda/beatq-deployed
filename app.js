@@ -12,11 +12,8 @@ var dbRoutes = require('./routes/dbRoutes');
 var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express'),
   http = require('http'),
-  morgan = require('morgan'),
+  morgan = require('morgan')
   // app = express();
-
-
-
 
 // app.get('/:collection/:operation', dbRoutes.modify);
 
@@ -25,20 +22,9 @@ var express = require('express'),
 // /*2*/ var sio =require('socket.io');
 // /*3*/ var io = sio(httpServer);
 // /*4*/ httpServer.listen(port, ipaddress);
-
-
-
-
-
 // messageRoutes.init(io);
 
-
-
-
-
-
-
-function SimpleStaticServer() {
+var SimpleStaticServer = function() {
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
