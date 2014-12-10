@@ -12,6 +12,7 @@ var dbRoutes = require('./routes/dbRoutes');
 var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express');
 var morgan = require('morgan');
+var bson = require('bson');
 
 
   // app = express();
