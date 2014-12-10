@@ -30,7 +30,7 @@ var express = require('express'),
 
 
 
-messageRoutes.init(io);
+// messageRoutes.init(io);
 
 
 
