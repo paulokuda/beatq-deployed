@@ -30,6 +30,7 @@ var SimpleStaticServer = function() {
     self.app = express();
     http = require('http').Server(self.app)
     var io = require('socket.io').listen(http)
+    messageRoutes.init(io);
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
