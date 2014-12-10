@@ -10,8 +10,8 @@
 // Normal Express requires...
 var dbRoutes = require('./routes/dbRoutes'); 
 var messageRoutes = require('./routes/serverSocket.js');
-var express = require('express'),
-  morgan = require('morgan')
+var express = require('express');
+var morgan = require('morgan');
 
 
   // app = express();
