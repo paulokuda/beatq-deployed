@@ -25,6 +25,8 @@ var express = require('express'),
 // messageRoutes.init(io);
 
 var SimpleStaticServer = function() {
+    var self = this;  
+    self.app = express();
     // Set the views directory
     self.app.set('views', __dirname + '/views');
     // Define the view (templating) engine
@@ -36,10 +38,7 @@ var SimpleStaticServer = function() {
     self.app.use(express.static(__dirname + '/public'));
 
 
-  // set self to the scope of the class
-  var self = this;  
   
-  self.app = express();
   //    self.app.use(connect(connect.basicAuth('j', 'jmjm')))
   self.app.use(morgan('[:date] :method :url :status')); // Log requests
   self.app.use(express.static(path.join(__dirname, 'public'))); // Process static files
