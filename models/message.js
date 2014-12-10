@@ -15,7 +15,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
 
 
 mongoClient.connect(url, function(err, db) {
-  if (err) doError(err);
+  if (err) console.log(err);
   console.log("Connected correctly to server");
   mongoDB = db;
 });
