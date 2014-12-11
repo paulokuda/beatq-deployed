@@ -30,12 +30,12 @@ $(document).ready(function(){
     $('.main-container').hide();
     // $('#nickWrap').hide();
     
-    document.getElementById("new-room").onclick = function(){
-        $('#first-page').slideToggle();
-        $('.main-container').show();
-        // $('#nickWrap').show();
+    // document.getElementById("new-room").onclick = function(){
+    //     $('#first-page').slideToggle();
+    //     $('.main-container').show();
+    //     // $('#nickWrap').show();
 
-    }
+    // }
     
 
     var scrolled = false;
@@ -74,7 +74,7 @@ $(document).ready(function(){
     //     });
     //     $('#nickname').val('');
     // });
-    document.getElementById("new-room").onclick = function(){
+    $('#new-room').onclick = function(){
         // $('#first-page').slideToggle();
         // $('.main-container').show();
         // $('#nickWrap').show();
