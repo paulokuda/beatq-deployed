@@ -13,7 +13,6 @@
     <script type="text/javascript" src="javascripts/clientSocket.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="javascripts/materialize.min.js"></script>
-    <script src="http://connect.soundcloud.com/sdk.js"></script>
     <script type="text/javascript" src="javascripts/api.js"></script>
     <!-- // <script src="http://www.youtube.com/player_api"></script> -->
     <title>BeatQ</title>
@@ -40,8 +39,9 @@
             Enter the chat room and start listening to queues of music populated by users. Having a crowd-sourced queue allows users to listen to a unique playlist of songs without you having to look for them yourselves. The first video is pre-loaded, but once that video reaches the end, it will cue the next song in the queue. Just enter your name below and enjoy!</p><br>
             <form id="setUsername">
               <input id="nickname" placeholder="What is your name?"></input>
+              <button class="btn waves-effect waves-light" type="submit" name="action" id="new-room"><i class="mdi-av-fast-forward right"></i>Enter Room</button>
             </form>
-            <button class="btn waves-effect waves-light" type="submit" name="action" id="new-room"><i class="mdi-av-fast-forward right"></i>Enter Room</button>
+            
             
           </center>
         </div>
