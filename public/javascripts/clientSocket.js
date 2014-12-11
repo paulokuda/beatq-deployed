@@ -61,7 +61,7 @@ $(document).ready(function(){
     $('#setUsername').submit(function(e) {
         e.preventDefault();
         socket.emit('new user', $('#nickname').val(), function(data) {
-            alert(data);
+            
             if (data) {
                 // console.log(data);
                 // alert(JSON.stringify(nickBox));
@@ -71,7 +71,7 @@ $(document).ready(function(){
 
             }
             else {
-                console.log("That username has already been chosen! Please enter another.")
+                alert("That username has already been chosen! Please enter another.");
             }
         });
         $('#nickname').val('');
