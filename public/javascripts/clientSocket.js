@@ -74,6 +74,24 @@ $(document).ready(function(){
         });
         $('#nickname').val('');
     });
+    // $('#setUsername').submit(function(e) {
+    //     e.preventDefault();
+    //     socket.emit('new user', $('#nickname').val(), function(data) {
+    //         if (data) {
+    //             // console.log(data);
+    //             // alert(JSON.stringify(nickBox));
+                    
+    //             $('#first-page').slideUp();
+    //             $('.main-container').show();
+
+    //         }
+    //         else {
+    //             alert("That username has already been chosen! Please enter another.")
+    //         }
+    //     });
+    //     $('#nickname').val('');
+        
+    // });
     
     // document.getElementById("new-room").onclick = function(){
     //     // $('#first-page').slideToggle();
