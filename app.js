@@ -32,7 +32,7 @@ var SimpleStaticServer = function() {
     self.app = express();
 
 
-    var http = require('http').Server(self.app)
+    var http = require('http');
     var httpServer = http.Server(self.app);
     var sio =require('socket.io');
     var io = sio(httpServer);
