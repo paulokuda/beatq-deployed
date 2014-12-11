@@ -55,8 +55,8 @@ $(document).ready(function(){
     // ALL SOCKET WORK
 
     
-    // var socket = io.connect(':8000/');
-    var socket = io();
+    var socket = io.connect(':8000/');
+    // var socket = io();
     socket.emit('index page');
     $('#setUsername').submit(function(e) {
         e.preventDefault();
