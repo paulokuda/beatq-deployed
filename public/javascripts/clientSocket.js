@@ -58,6 +58,8 @@ $(document).ready(function(){
     var socket = io.connect(':8000/');
     socket.emit('index page');
     $('#setUsername').submit(function(e) {
+        $('#first-page').slideUp();
+        $('.main-container').show();
         e.preventDefault();
         socket.emit('new user', function(data) {
             console.log("data is: " + data);
@@ -65,8 +67,8 @@ $(document).ready(function(){
                 // console.log(data);
                 // alert(JSON.stringify(nickBox));
                     
-                $('#first-page').slideUp();
-                $('.main-container').show();
+                // $('#first-page').slideUp();
+                // $('.main-container').show();
 
             }
             else {
