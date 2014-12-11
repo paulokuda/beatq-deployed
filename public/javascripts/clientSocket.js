@@ -57,18 +57,35 @@ $(document).ready(function(){
     
     var socket = io.connect(':8000/');
     socket.emit('index page');
-    $('#setUsername').submit(function(e) {
-        $('#first-page').slideUp();
-        $('.main-container').show();
-        e.preventDefault();
-        socket.emit('new user', function(data) {
-            console.log("data is: " + data);
+    // $('#setUsername').submit(function(e) {
+    //     e.preventDefault();
+    //     socket.emit('new user', $('#nickname').val(), function(data) {
+    //         if (data) {
+    //             // console.log(data);
+    //             // alert(JSON.stringify(nickBox));
+                    
+    //             $('#first-page').slideUp();
+    //             $('.main-container').show();
+
+    //         }
+    //         else {
+    //             alert("That username has already been chosen! Please enter another.")
+    //         }
+    //     });
+    //     $('#nickname').val('');
+    // });
+    
+    document.getElementById("new-room").onclick = function(){
+        // $('#first-page').slideToggle();
+        // $('.main-container').show();
+        // $('#nickWrap').show();
+        socket.emit('new user', $('#nickname').val(), function(data) {
             if (data) {
                 // console.log(data);
                 // alert(JSON.stringify(nickBox));
                     
-                // $('#first-page').slideUp();
-                // $('.main-container').show();
+                $('#first-page').slideUp();
+                $('.main-container').show();
 
             }
             else {
@@ -76,7 +93,9 @@ $(document).ready(function(){
             }
         });
         $('#nickname').val('');
-    });
+
+    }
+    
     // $('#new-room').onclick = function(){
     //     // $('#first-page').slideToggle();
     //     // $('.main-container').show();
