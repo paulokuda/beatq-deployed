@@ -68,7 +68,7 @@ var SimpleStaticServer = function() {
      console.log('host'+ self.host);
 
     //  Start listening on the specific IP and PORT
-    http.listen(self.port, self.ipaddress);
+    self.app.listen(self.port, self.ipaddress);
   };
 }; 
 
