@@ -55,11 +55,13 @@ $(document).ready(function(){
     // ALL SOCKET WORK
 
     
-    var socket = io.connect(':8000/');
+    // var socket = io.connect(':8000/');
+    var socket = io();
     socket.emit('index page');
     $('#setUsername').submit(function(e) {
         e.preventDefault();
         socket.emit('new user', $('#nickname').val(), function(data) {
+            alert(data);
             if (data) {
                 // console.log(data);
                 // alert(JSON.stringify(nickBox));
