@@ -59,7 +59,7 @@ $(document).ready(function(){
     socket.emit('index page');
     $('#setUsername').submit(function(e) {
         e.preventDefault();
-        socket.emit('new user', $('#nickname').val(), function(data) {
+        socket.emit('new user', function(data) {
             console.log("data is: " + data);
             if (data) {
                 // console.log(data);
