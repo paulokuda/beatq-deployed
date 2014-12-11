@@ -69,7 +69,7 @@ $(document).ready(function(){
 
             }
             else {
-                alert("That username has already been chosen! Please enter another.")
+                console.log("That username has already been chosen! Please enter another.")
             }
         });
         $('#nickname').val('');
