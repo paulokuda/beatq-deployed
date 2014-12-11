@@ -28,6 +28,7 @@ var bson = require('bson');
 
 
 var SimpleStaticServer = function() {
+    nicknames = [];
     var self = this;  
     self.app = express();
 
