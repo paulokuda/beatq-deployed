@@ -24,7 +24,7 @@ var bson = require('bson');
 // /*2*/ var sio =require('socket.io');
 // /*3*/ var io = sio(httpServer);
 // /*4*/ httpServer.listen(port, ipaddress);
-// messageRoutes.init(io);
+messageRoutes.init(io);
 
 var SimpleStaticServer = function() {
     var self = this;  
