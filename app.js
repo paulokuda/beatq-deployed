@@ -28,11 +28,16 @@ var bson = require('bson');
 
 
 var SimpleStaticServer = function() {
+    var self = this;  
+    self.app = express();
+
+
+    
+    var httpServer = http.Server(self.app);
     var sio =require('socket.io');
     var io = sio(httpServer);
     messageRoutes.init(io);
-    var self = this;  
-    self.app = express();
+    
     http = require('http').Server(self.app)
     // var io = require('socket.io').listen(http)
     // Set the views directory
