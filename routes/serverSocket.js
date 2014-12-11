@@ -14,7 +14,7 @@ var util = require("util");
 exports.init = function(io) {
 	var totalUsers = 0; // keep track of the number of users
 
-    
+
   // When a new connection is initiated
 	io.sockets.on('connection', function (socket) {
         ++totalUsers;
@@ -36,6 +36,7 @@ exports.init = function(io) {
             // console.log(nicknames);
           if (nicknames.indexOf(msg) != -1) { // making sure that the username isn't already in use
             callback(false);
+            console.log("new user");
           }
           else {
             callback(true);
