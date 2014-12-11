@@ -32,13 +32,13 @@ var SimpleStaticServer = function() {
     self.app = express();
 
 
-    
+    var http = require('http').Server(self.app)
     var httpServer = http.Server(self.app);
     var sio =require('socket.io');
     var io = sio(httpServer);
     messageRoutes.init(io);
     
-    http = require('http').Server(self.app)
+    
     // var io = require('socket.io').listen(http)
     // Set the views directory
     self.app.set('views', __dirname + '/views');
