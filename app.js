@@ -24,9 +24,13 @@ var bson = require('bson');
 // /*2*/ var sio =require('socket.io');
 // /*3*/ var io = sio(httpServer);
 // /*4*/ httpServer.listen(port, ipaddress);
-messageRoutes.init(io);
+
+
 
 var SimpleStaticServer = function() {
+    var sio =require('socket.io');
+    var io = sio(httpServer);
+    messageRoutes.init(io);
     var self = this;  
     self.app = express();
     http = require('http').Server(self.app)
