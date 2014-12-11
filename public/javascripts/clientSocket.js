@@ -60,6 +60,7 @@ $(document).ready(function(){
     $('#setUsername').submit(function(e) {
         e.preventDefault();
         socket.emit('new user', $('#nickname').val(), function(data) {
+            console.log("data is: " + data);
             if (data) {
                 // console.log(data);
                 // alert(JSON.stringify(nickBox));
