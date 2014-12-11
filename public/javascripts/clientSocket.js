@@ -156,7 +156,8 @@ $(document).ready(function(){
         for (i = 0; i < data.length; i++){
             html += data[i] + '<br>'
         }
-        $('#users').html(html);
+        // $('#users').html(html);
+        $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
     });
 
     socket.on('user left', function(data){
