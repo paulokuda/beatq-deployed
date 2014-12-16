@@ -101,7 +101,7 @@ $(document).ready(function(){
         var p = '<p> &bull; &nbsp;';
         var endp = '</p>'
         for (i = 0; i < data.nicknames.length; i++){
-            html = html + '<p> • &nbsp;' + data.nicknames[i] + '</p>' + '<br>'
+            html = html + '<p>' + data.nicknames[i] + '</p>' + '<br>'
         }
         $('#users-count').html(html);
         $('#all-users').html(html);
