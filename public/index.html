@@ -97,7 +97,9 @@
                 }
               });
               $("#next-song").click(function(){
+                alert("hit");
                 event.data = 0;
+                onPlayerStateChange(event);
               });
               $('#show-queue').html(event.target.A.videoData.title);
               $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
