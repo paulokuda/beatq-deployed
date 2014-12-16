@@ -148,17 +148,17 @@ $(document).ready(function(){
 
 
     socket.on('index page', function(data){
-        // $('#users-in-queue').append($('<li>').text(data.nicknames));
+        // $('#users-in-queue').html(data.nicknames));
     });
 
 
    
     socket.on('usernames', function(data){
         var html = '';
-        for (i = 0; i < data.length; i++){
+        for (i = 0; i < data.nicknames.length; i++){
             html += data[i] + '<br>'
         }
-        // $('#users').html(html);
+        $('#users-count').html(html);
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
 
