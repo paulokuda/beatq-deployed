@@ -112,12 +112,13 @@ form button {
 }
 
 #show-queue {
-    font-size: 18px;
+    font-size: 15px;
     /*text-transform: uppercase;*/
     /*font-family: 'Roboto Condensed', sans-serif;*/
     font-family: 'Roboto', sans-serif;
     margin-top: -1px;
     padding-left: 2%;
+    padding-top: 10px;
 
 }
 #queue-count {
