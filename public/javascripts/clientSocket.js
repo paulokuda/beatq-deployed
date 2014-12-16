@@ -69,6 +69,8 @@ $(document).ready(function(){
                 $('#first-page').slideUp();
                 $('.main-container').show();
 
+
+
             }
             else {
                 alert("That username has already been chosen! Please enter another.");
@@ -175,7 +177,8 @@ $(document).ready(function(){
         var secondHalfUrl = "?autoplay=1\u0022></iframe>";
         var fullUrl = (firstHalfUrl + videoId + secondHalfUrl);
         theQ.push("" + videoId);
-        $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
+        $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
+        // $('#queue-count').html("Title (Songs in the Q: " + theQ.length + ")");
         // alert(fullUrl);
         // $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
         // $('#show-queue').html(theQ);
