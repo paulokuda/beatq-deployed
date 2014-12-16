@@ -43,7 +43,7 @@ exports.init = function(io) {
             
             socket.nickname = msg;
             nicknames.push(socket.nickname);
-            io.sockets.emit('usernames', {nicknames: nicknames, user: socket.nickname});
+            io.sockets.emit('usernames', {nicknames: nicknames, user: socket.nickname, userCount: totalUsers});
           }
         });
         // socket.emit('players', { number: currentUsers});

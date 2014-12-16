@@ -1,13 +1,3 @@
-/*
- * In this example, I put the typical Express stuff first
- * even though I don't use it in the example.  It can serve
- * as a template for your apps if you need Express.
- * Then I put the socket.io specific stuff after
- * It doesn't need to be after, but I'm doing it this
- * way just to make it easier to differentiate the two.
- */
-
-// Normal Express requires...
 var dbRoutes = require('./routes/dbRoutes'); 
 var messageRoutes = require('./routes/serverSocket.js');
 var express = require('express');
@@ -31,15 +21,11 @@ var SimpleStaticServer = function() {
     nicknames = [];
     var self = this;  
     self.app = express();
-
-
     var http = require('http');
     var httpServer = http.Server(self.app);
     var sio =require('socket.io');
     var io = sio(httpServer);
     messageRoutes.init(io);
-    
-    
     // var io = require('socket.io').listen(http)
     // Set the views directory
     self.app.set('views', __dirname + '/views');
@@ -50,16 +36,9 @@ var SimpleStaticServer = function() {
 
     // Handle static files
     self.app.use(express.static(__dirname + '/public'));
-
-
+    self.app.use(morgan('[:date] :method :url :status')); // Log requests
   
-  //    self.app.use(connect(connect.basicAuth('j', 'jmjm')))
-  self.app.use(morgan('[:date] :method :url :status')); // Log requests
-  // self.app.use(express.static(self.path.join(__dirname, 'public'))); // Process static files
-
-
-
-  // Start the server (starts up the sample application).
+  // start the server
   self.start = function() {
   
      self.ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
@@ -68,14 +47,11 @@ var SimpleStaticServer = function() {
 
      console.log('host'+ self.host);
 
-    //  Start listening on the specific IP and PORT
+    
     httpServer.listen(self.port, self.ipaddress);
   };
 }; 
 
 
-/**
- *  main():  Main code.
- */
  var sss = new SimpleStaticServer();
  sss.start();
