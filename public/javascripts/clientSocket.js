@@ -98,7 +98,7 @@ $(document).ready(function(){
         
         
         var html = '';
-        var p = '<p>';
+        var p = '<p> &bull;';
         var endp = '</p>'
         for (i = 0; i < data.nicknames.length; i++){
             html += data.nicknames[i] + '<br>'
