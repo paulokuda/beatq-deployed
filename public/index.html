@@ -83,7 +83,8 @@
           console.log(event.target.A.videoData);
             // $('#about-text').append(player.likeCount);
             $('#show-queue').html(event.target.A.videoData.title);
-            $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
+            $('#song-title').html("(Songs in the Q: " + theQ.length + ")");
+            // $('#queue-count').html("(Users in the chat: " + theQ.length + ")");
             if (theQ.length != 0){
               event.target.playVideo();
             }
