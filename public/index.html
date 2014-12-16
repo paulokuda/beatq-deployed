@@ -96,11 +96,19 @@
                   $('#favorites-list').html(html);
                 }
               });
+
               $("#next-song").click(function(){
-                alert("hit");
                 event.data = 0;
                 onPlayerStateChange(event);
               });
+
+              $("#pause-song").click(function(){
+                alert("pause");
+                player.pauseVideo();
+              });
+
+
+              
               $('#show-queue').html(event.target.A.videoData.title);
               $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
               // $('#queue-count').html("(Users in the chat: " + theQ.length + ")");
@@ -121,7 +129,7 @@
                   }
                   
               };
-              $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
+              $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
               $('#show-queue').html(event.target.A.videoData.title);
           }
         };
@@ -151,12 +159,15 @@
             <div class="box-label-details" id="song-title">Title</div><br>
               <!-- <div id="show-queue"> -->
                <div class="row">
-                <div class="col s12 m5" id="show-queue">
+                <div class="col s12 m7" id="show-queue">
                 </div>
-                <div class="col s12 m7">
+                <div class="col s12 m5">
                   <!-- Add this song! -->
-                  <button class="btn waves-effect waves-light" name="action" id="next-song"><i class="mdi-av-fast-forward"></i></button>
-                  <button class="btn waves-effect waves-light" name="action" id="make-favorite"><i class="mdi-content-add"></i></button>
+                  <a class="btn-floating" id="pause-song"><i class="mdi-av-pause"></i></a>
+                  <a class="btn-floating" id="next-song"><i class="mdi-av-fast-forward"></i></a>
+                  <a class="btn-floating" id="make-favorite"><i class="mdi-content-add"></i></a>
+                  <!-- <button class="btn waves-effect waves-light" name="action" id="next-song"><i class="mdi-av-fast-forward"></i></button> -->
+                 <!--  <button class="btn waves-effect waves-light" name="action" id="make-favorite"><i class="mdi-content-add"></i></button> -->
 
                 </div>
                </div>
