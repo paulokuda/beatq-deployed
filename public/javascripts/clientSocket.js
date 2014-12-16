@@ -78,66 +78,7 @@ $(document).ready(function(){
         });
         $('#nickname').val('');
     });
-    // $('#setUsername').submit(function(e) {
-    //     e.preventDefault();
-    //     socket.emit('new user', $('#nickname').val(), function(data) {
-    //         if (data) {
-    //             // console.log(data);
-    //             // alert(JSON.stringify(nickBox));
-                    
-    //             $('#first-page').slideUp();
-    //             $('.main-container').show();
-
-    //         }
-    //         else {
-    //             alert("That username has already been chosen! Please enter another.")
-    //         }
-    //     });
-    //     $('#nickname').val('');
-        
-    // });
     
-    // document.getElementById("new-room").onclick = function(){
-    //     // $('#first-page').slideToggle();
-    //     // $('.main-container').show();
-    //     // $('#nickWrap').show();
-    //     socket.emit('new user', $('#nickname').val(), function(data) {
-    //         if (data) {
-    //             // console.log(data);
-    //             // alert(JSON.stringify(nickBox));
-                    
-    //             $('#first-page').slideUp();
-    //             $('.main-container').show();
-
-    //         }
-    //         else {
-    //             alert("That username has already been chosen! Please enter another.")
-    //         }
-    //     });
-    //     $('#nickname').val('');
-
-    // }
-    
-    // $('#new-room').onclick = function(){
-    //     // $('#first-page').slideToggle();
-    //     // $('.main-container').show();
-    //     // $('#nickWrap').show();
-    //     socket.emit('new user', $('#nickname').val(), function(data) {
-    //         if (data) {
-    //             // console.log(data);
-    //             // alert(JSON.stringify(nickBox));
-                    
-    //             $('#first-page').slideUp();
-    //             $('.main-container').show();
-
-    //         }
-    //         else {
-    //             alert("That username has already been chosen! Please enter another.")
-    //         }
-    //     });
-    //     $('#nickname').val('');
-
-    // }
 
 
     $('form').submit(function(){
@@ -160,7 +101,7 @@ $(document).ready(function(){
         for (i = 0; i < data.nicknames.length; i++){
             html += data.nicknames[i] + '<br>'
         }
-        $('#users-count').html('<p>' + html '</p>');
+        $('#users-count').html(html);
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
 
