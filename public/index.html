@@ -65,46 +65,48 @@
   <!--   It's bad form to not separate my concerns here; however, the way the YouTube API is set up, I was not able to render a player object unless I included the script in my HTML file -->
      <script src="http://www.youtube.com/player_api"></script>
      <script>
+      if (theQ.length > 0) {
       // create youtube player
-        var player;
-        function onYouTubePlayerAPIReady() {
-            player = new YT.Player('player', {
-              height: '390',
-              width: '380',
-              videoId: 'j8WSspA9gB4',
-              events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
+          var player;
+          function onYouTubePlayerAPIReady() {
+              player = new YT.Player('player', {
+                height: '390',
+                width: '380',
+                videoId: 'j8WSspA9gB4',
+                events: {
+                  'onReady': onPlayerReady,
+                  'onStateChange': onPlayerStateChange
+                }
+              });
+          }
+          // autoplay video
+          function onPlayerReady(event) {
+            console.log(event.target.A.videoData);
+              // $('#about-text').append(player.likeCount);
+              $('#show-queue').html(event.target.A.videoData.title);
+              $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
+              // $('#queue-count').html("(Users in the chat: " + theQ.length + ")");
+              if (theQ.length != 0){
+                event.target.playVideo();
               }
-            });
-        }
-        // autoplay video
-        function onPlayerReady(event) {
-          console.log(event.target.A.videoData);
-            // $('#about-text').append(player.likeCount);
-            $('#show-queue').html(event.target.A.videoData.title);
-            $('#song-title').html("(Songs in the Q: " + theQ.length + ")");
-            // $('#queue-count').html("(Users in the chat: " + theQ.length + ")");
-            if (theQ.length != 0){
-              event.target.playVideo();
-            }
-        }
-        // when video ends
-        function onPlayerStateChange(event) {      
-            if(event.data === 0) {
-                if (theQ.length > 1){
-                  theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)   
-                }
-                if (theQ.length > 0) {
-                  // alert('There are no more songs in the Q! The last song will loop until another video is added.');
-                  player.loadVideoById(theQ[0]);
-                  $('#show-queue').append(event.target.A.videoData.title);
-                }
-                
-            };
-            $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
-            $('#show-queue').html(event.target.A.videoData.title);
-        }
+          }
+          // when video ends
+          function onPlayerStateChange(event) {      
+              if(event.data === 0) {
+                  if (theQ.length > 1){
+                    theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)   
+                  }
+                  if (theQ.length > 0) {
+                    // alert('There are no more songs in the Q! The last song will loop until another video is added.');
+                    player.loadVideoById(theQ[0]);
+                    $('#show-queue').append(event.target.A.videoData.title);
+                  }
+                  
+              };
+              $('#queue-count').html("(Songs in the Q: " + theQ.length + ")");
+              $('#show-queue').html(event.target.A.videoData.title);
+          }
+        };
      </script>
       <!-- </div> -->
 <!-- <div id="chat-wrap"> -->
