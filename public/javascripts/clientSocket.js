@@ -110,6 +110,11 @@ $(document).ready(function(){
 
     socket.on('user left', function(data){
         $('#messages').append($('<li>').text(data.user + " " + "has left the Q."));
+        var html = '';
+        for (i = 0; i < data.nicknames.length; i++){
+            html += data.nicknames[i] + '<br>'
+        }
+        $('#users-count').html(html);
     });
 
     socket.on('chat message', function(msg){
