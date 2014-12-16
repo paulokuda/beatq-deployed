@@ -15,7 +15,7 @@ exports.init = function(io) {
 	var totalUsers = 0; // keep track of the number of users
     var nsp = io.of('/my-namespace');
     nsp.on('connection', function(socket){
-      console.log('someone connected'):
+      console.log('someone connected');
     });
 
 
