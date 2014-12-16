@@ -42,7 +42,7 @@ exports.init = function(io) {
             callback(false);
             console.log("new user");
           }
-          else {
+          if (msg != "") {
             callback(true);
             
             socket.nickname = msg;
