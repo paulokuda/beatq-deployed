@@ -6,9 +6,7 @@ var secondHalfUrl = "?autoplay=0\u0022></iframe>";
 
 $(document).ready(function(){
 
-    $("#show-queue").click(function(){
-      alert( "Handler for .click() called." );
-    });
+    
 
     // socket.emit('index page');
     $('.collapsible').collapsible();

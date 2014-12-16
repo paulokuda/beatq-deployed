@@ -84,6 +84,9 @@
             
             console.log(event.target.A.videoData);
               // $('#about-text').append(player.likeCount);
+              $("#show-queue").click(function(){
+                alert( "Handler for .click() called.");
+              });
               $('#show-queue').html(event.target.A.videoData.title);
               $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
               // $('#queue-count').html("(Users in the chat: " + theQ.length + ")");
