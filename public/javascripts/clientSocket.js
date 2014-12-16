@@ -102,7 +102,7 @@ $(document).ready(function(){
         var endp = '</p>'
         for (i = 0; i < data.nicknames.length; i++){
             // html += data.nicknames[i] + '<br>'
-            $('#users-count').append($('<li>').html(p + data.nicknames[i] + endp));
+            $('#users-count').append(p + data.nicknames[i] + endp);
         }
         
         $('#all-users').html(html);
