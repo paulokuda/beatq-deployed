@@ -5,7 +5,7 @@ var secondHalfUrl = "?autoplay=0\u0022></iframe>";
 
 
 $(document).ready(function(){
-
+    alert(nicknames.length);
     // socket.emit('index page');
     $('.collapsible').collapsible();
     $('#collapse').onclick = function() {

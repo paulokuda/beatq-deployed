@@ -81,6 +81,7 @@
           }
           // autoplay video
           function onPlayerReady(event) {
+            alert(nickname)
             console.log(event.target.A.videoData);
               // $('#about-text').append(player.likeCount);
               $('#show-queue').html(event.target.A.videoData.title);
