@@ -85,7 +85,8 @@
             console.log(event.target.A.videoData);
               // $('#about-text').append(player.likeCount);
               $("#show-queue").click(function(){
-                alert( "Handler for .click() called.");
+                favorites.push('' + event.target.A.videoData.title);
+                alert(favorites);
               });
               $('#show-queue').html(event.target.A.videoData.title);
               $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
