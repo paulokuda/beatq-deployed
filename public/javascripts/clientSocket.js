@@ -163,8 +163,6 @@ $(document).ready(function(){
         $('#users-count').html('<p>' + html '</p>');
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
-
-
     });
 
     socket.on('user left', function(data){
