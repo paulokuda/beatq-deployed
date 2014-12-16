@@ -160,7 +160,7 @@ $(document).ready(function(){
         }
         // $('#users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
-        alert(data.usernames);
+        alert(data.nicknames);
     });
 
     socket.on('user left', function(data){
