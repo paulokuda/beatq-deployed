@@ -65,7 +65,7 @@ exports.init = function(io) {
             else{
                 nicknames.splice(nicknames.indexOf(socket.nickname), 1);
                 updateNicknames();
-                io.sockets.emit('user left', {user: socket.nickname});
+                io.sockets.emit('user left', {user: socket.nickname, nicknames: nicknames, userCount: totalUsers});
         }
         function updateNicknames() {
             io.sockets.emit('usernames', nicknames);
