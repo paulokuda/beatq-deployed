@@ -101,10 +101,9 @@ $(document).ready(function(){
         var p = '<p> &bull; &nbsp;';
         var endp = '</p>'
         for (i = 0; i < data.nicknames.length; i++){
-            // html += data.nicknames[i] + '<br>'
-            $('#users-count').append(p + data.nicknames[i] + endp);
+            html = html + '<p> &bull; &nbsp;' + data.nicknames[i] + '</p>' + '<br>'
         }
-        
+        $('#users-count').html(html);
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
 
