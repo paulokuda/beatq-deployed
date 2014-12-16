@@ -98,9 +98,11 @@
               });
 
               $("#next-song").click(function(){
-                if (theQ.length <= 1) {
+                if (theQ.length < 1) {
                   alert("There is only one song left in the queue! Can't skip this one.")
                 }
+                rewind.push(theQ[0]);
+                theQ.shift();
                 event.data = 0;
                 onPlayerStateChange(event);
               });
