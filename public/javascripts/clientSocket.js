@@ -163,15 +163,12 @@ $(document).ready(function(){
         $('#users-count').html('<p>' + html '</p>');
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
+
+
     });
 
     socket.on('user left', function(data){
         $('#messages').append($('<li>').text(data.user + " " + "has left the Q."));
-        var html = '';
-        for (i = 0; i < data.nicknames.length; i++){
-            html += data.nicknames[i] + '<br>'
-        }
-        $('#users-count').html('<p>' + html '</p>');
     });
 
     socket.on('chat message', function(msg){
