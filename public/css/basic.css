@@ -231,7 +231,11 @@ margin-top: 10px;
 
 #users-count {
     padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 #favorites-list {
     padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
