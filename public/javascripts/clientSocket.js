@@ -160,7 +160,7 @@ $(document).ready(function(){
         for (i = 0; i < data.nicknames.length; i++){
             html += data.nicknames[i] + '<br>'
         }
-        $('#users-count').html(html);
+        $('#users-count').html('<p>' + html '</p>');
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
 
