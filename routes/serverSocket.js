@@ -38,11 +38,11 @@ exports.init = function(io) {
 
         socket.on('new user', function(msg, callback){
             // console.log(nicknames);
-          if (nicknames.indexOf(msg) != -1) { // making sure that the username isn't already in use
+          if (nicknames.indexOf(msg) != -1 || msg === "") { // making sure that the username isn't already in use
             callback(false);
             console.log("new user");
           }
-          if (msg != "") {
+          else {
             callback(true);
             
             socket.nickname = msg;
