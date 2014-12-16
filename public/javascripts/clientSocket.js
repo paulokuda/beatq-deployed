@@ -159,6 +159,7 @@ $(document).ready(function(){
             html += data[i] + '<br>'
         }
         // $('#users').html(html);
+        $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
 
 
