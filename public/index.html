@@ -98,6 +98,9 @@
               });
 
               $("#next-song").click(function(){
+                if (theQ.length <= 1) {
+                  alert("There is only one song left in the queue! Can't skip this one.")
+                }
                 event.data = 0;
                 onPlayerStateChange(event);
               });
@@ -159,9 +162,9 @@
             <div class="box-label-details" id="song-title">Title</div><br>
               <!-- <div id="show-queue"> -->
                <div class="row">
-                <div class="col s12 m7" id="show-queue">
+                <div class="col s12 m8" id="show-queue">
                 </div>
-                <div class="col s12 m5">
+                <div class="col s12 m4">
                   <!-- Add this song! -->
                   <a class="btn-floating" id="pause-song"><i class="mdi-av-pause"></i></a>
                   <a class="btn-floating" id="next-song"><i class="mdi-av-fast-forward"></i></a>
