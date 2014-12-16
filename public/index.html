@@ -96,6 +96,9 @@
                   $('#favorites-list').html(html);
                 }
               });
+              $("#next-song").click(function(){
+                event.data = 0;
+              });
               $('#show-queue').html(event.target.A.videoData.title);
               $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
               // $('#queue-count').html("(Users in the chat: " + theQ.length + ")");
