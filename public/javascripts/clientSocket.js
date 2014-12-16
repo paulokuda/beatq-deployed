@@ -98,10 +98,12 @@ $(document).ready(function(){
         
         
         var html = '';
+        var p = '<p>';
+        var endp = '</p>'
         for (i = 0; i < data.nicknames.length; i++){
             html += data.nicknames[i] + '<br>'
         }
-        $('#users-count').html(html);
+        $('#users-count').html(p + html + endp);
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
 
