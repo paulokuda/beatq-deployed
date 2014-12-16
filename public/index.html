@@ -113,7 +113,7 @@
               $("#back-song").click(function(){
                 alert(rewind[0]);
                 if (rewind.length > 0) {
-                  player.cueVideoById(rewind[0]);
+                  player.loadVideoById(rewind[0]);
                 }
                 else {
                   alert("There are no songs to go back to! Wait until more songs are added to the Q.");
