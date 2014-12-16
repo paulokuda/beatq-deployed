@@ -5,7 +5,7 @@ var secondHalfUrl = "?autoplay=0\u0022></iframe>";
 
 
 $(document).ready(function(){
-    alert(nicknames.length.value);
+
     // socket.emit('index page');
     $('.collapsible').collapsible();
     $('#collapse').onclick = function() {
@@ -160,6 +160,7 @@ $(document).ready(function(){
         }
         // $('#users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
+        alert(data.usernames);
     });
 
     socket.on('user left', function(data){
