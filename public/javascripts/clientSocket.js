@@ -98,12 +98,13 @@ $(document).ready(function(){
         
         
         var html = '';
-        var p = '<p> &bull;';
+        var p = '<p> &bull; &nbsp;';
         var endp = '</p>'
         for (i = 0; i < data.nicknames.length; i++){
-            html += data.nicknames[i] + '<br>'
+            // html += data.nicknames[i] + '<br>'
+            $('#users-count').append.html(p + data.nicknames[i] + endp);
         }
-        $('#users-count').html(p + html + endp);
+        
         $('#all-users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
 
