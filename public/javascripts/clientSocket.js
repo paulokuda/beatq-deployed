@@ -1,7 +1,6 @@
 var theQ = [];
-var firstHalfUrl = "<iframe width=\u0022100%\u0022 height=\u0022400\u0022src=\u0022http://www.youtube.com/embed/";
-var secondHalfUrl = "?autoplay=0\u0022></iframe>";
 var favorites = [];
+var rewind = [];
 
 
 

@@ -110,6 +110,16 @@
                 player.pauseVideo();
               });
 
+              $("#back-song").click(function(){
+                // alert("pause");
+                if (rewind.length > 0) {
+                  player.cueVideoById(rewind[0]);
+                }
+                else {
+                  alert("There are no songs to go back to! Wait until more songs are added to the Q.");
+                }
+              });
+
 
               
               $('#show-queue').html(event.target.A.videoData.title);
@@ -123,6 +133,7 @@
           function onPlayerStateChange(event) {      
               if(event.data === 0) {
                   if (theQ.length > 1){
+                    rewind.push(theQ[0]);
                     theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)   
                   }
                   if (theQ.length > 0) {
