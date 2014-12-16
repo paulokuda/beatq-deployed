@@ -160,7 +160,7 @@ $(document).ready(function(){
         }
         // $('#users').html(html);
         $('#messages').append($('<li>').text(data.user + " " + "has entered the Q."));
-        $('#users-in-queue').append($('<li>').text(data.user));
+        // $('#users-in-queue').append($('<li>').text(data.user));
 
     });
 
