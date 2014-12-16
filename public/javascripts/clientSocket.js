@@ -158,7 +158,7 @@ $(document).ready(function(){
         alert(data.nicknames.length);
         var html = '';
         for (i = 0; i < data.nicknames.length; i++){
-            html += data[i] + '<br>'
+            html += data.nicknames[i] + '<br>'
         }
         $('#users-count').html(html);
         $('#all-users').html(html);
