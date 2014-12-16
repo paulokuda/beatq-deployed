@@ -85,8 +85,12 @@
             console.log(event.target.A.videoData);
               // $('#about-text').append(player.likeCount);
               $("#show-queue").click(function(){
-                favorites.push('' + event.target.A.videoData.title);
-                alert(favorites);
+                if (favorites.indexOf(event.target.A.videoData.title) != -1) {
+                  favorites.push(event.target.A.videoData.title);
+                }
+                else {
+                  alert("This song was already added to your favorites!");
+                }
               });
               $('#show-queue').html(event.target.A.videoData.title);
               $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
