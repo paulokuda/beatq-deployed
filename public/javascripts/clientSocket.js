@@ -154,6 +154,8 @@ $(document).ready(function(){
 
    
     socket.on('usernames', function(data){
+        
+        alert(data.nicknames);
         var html = '';
         for (i = 0; i < data.nicknames.length; i++){
             html += data[i] + '<br>'
