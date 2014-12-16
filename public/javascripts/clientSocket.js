@@ -98,8 +98,6 @@ $(document).ready(function(){
         
         
         var html = '';
-        var p = '<p> &bull; &nbsp;';
-        var endp = '</p>'
         for (i = 0; i < data.nicknames.length; i++){
             html += '&bull; &nbsp;' + data.nicknames[i] + '<br>'
         }
@@ -114,7 +112,7 @@ $(document).ready(function(){
         $('#messages').append($('<li>').text(data.user + " " + "has left the Q."));
         var html = '';
         for (i = 0; i < data.nicknames.length; i++){
-            html += data.nicknames[i] + '<br>'
+            html += '&bull; &nbsp;' + data.nicknames[i] + '<br>'
         }
         $('#users-count').html(html);
     });
