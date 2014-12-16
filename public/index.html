@@ -65,9 +65,11 @@
   <!--   It's bad form to not separate my concerns here; however, the way the YouTube API is set up, I was not able to render a player object unless I included the script in my HTML file -->
      <script src="http://www.youtube.com/player_api"></script>
      <script>
-      if (theQ.length > 0) {
+     
       // create youtube player
           var player;
+          player.clearVideo();
+          if (theQ.length != 0) {
           function onYouTubePlayerAPIReady() {
               player = new YT.Player('player', {
                 height: '390',
