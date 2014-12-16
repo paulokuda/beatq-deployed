@@ -148,7 +148,7 @@ $(document).ready(function(){
 
 
     socket.on('index page', function(data){
-        $('#users-in-queue').append($('<li>').text(data.nicknames));
+        // $('#users-in-queue').append($('<li>').text(data.nicknames));
     });
 
 
