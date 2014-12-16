@@ -29,6 +29,7 @@ var SimpleStaticServer = function() {
     // var io = require('socket.io').listen(http)
     // Set the views directory
     self.app.set('views', __dirname + '/views');
+    // self.app.get('/:namespace', dbRoutes.getUser);
     // Define the view (templating) engine
     self.app.set('view engine', 'ejs');
     // Log requests
