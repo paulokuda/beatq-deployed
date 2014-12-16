@@ -82,14 +82,14 @@
           // autoplay video
           function onPlayerReady(event) {
             
-            console.log(event.target.A.videoData);
+            
               // $('#about-text').append(player.likeCount);
               $("#show-queue").click(function(){
                 if (favorites.indexOf(event.target.A.videoData.title) != -1) {
-                  favorites.push(event.target.A.videoData.title);
+                  alert("This song was already added to your favorites!");
                 }
                 else {
-                  alert("This song was already added to your favorites!");
+                  favorites.push(event.target.A.videoData.title);
                 }
               });
               $('#show-queue').html(event.target.A.videoData.title);

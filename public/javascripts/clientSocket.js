@@ -98,8 +98,6 @@ $(document).ready(function(){
 
    
     socket.on('usernames', function(data){
-        
-        
         var html = '';
         for (i = 0; i < data.nicknames.length; i++){
             html += '&bull; &nbsp;' + data.nicknames[i] + '<br>'
