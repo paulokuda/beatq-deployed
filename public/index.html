@@ -105,6 +105,7 @@
                 theQ.shift();
                 event.data = 0;
                 onPlayerStateChange(event);
+                $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
               });
 
               $("#pause-song").click(function(){
