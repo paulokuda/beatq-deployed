@@ -95,8 +95,8 @@
                 if (theQ.length < 1) {
                   alert("There is only one song left in the queue! Can't skip this one.")
                 }
-                rewind.push(theQ[0]);
-                theQ.shift();
+                // rewind.push(theQ[0]);
+                // theQ.shift();
                 event.data = 0;
                 onPlayerStateChange(event);
                 $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
@@ -135,7 +135,7 @@
                     rewind.push(theQ[0]);
                     theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)   
                   }
-                  if (theQ.length > 0) {
+                  if (theQ.length === 1) {
                     // alert('There are no more songs in the Q! The last song will loop until another video is added.');
                     player.loadVideoById(theQ[0]);
                     $('#show-queue').append(event.target.A.videoData.title);
