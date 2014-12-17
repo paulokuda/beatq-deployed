@@ -97,9 +97,11 @@
                 }
                 // rewind.push(theQ[0]);
                 // theQ.shift();
-                event.data = 0;
-                onPlayerStateChange(event);
-                $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
+                else {
+                  event.data = 0;
+                  onPlayerStateChange(event);
+                  $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
+                }
               });
 
               $("#pause-song").click(function(){
@@ -115,7 +117,7 @@
                   $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
                 }
                 else {
-                  alert("There are no songs to go back to! Wait until more songs are added to the Q.");
+                  alert("There are no songs to go back to!");
                 }
               });
 
