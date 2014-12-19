@@ -145,8 +145,9 @@
               if(event.data === 0) {
                   if (theQ.length > 1){
                     rewind.push(theQ[0]);
-                    theQ.shift(); // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)
+                     // this way, if there are no more videos in the Q, the last video will replay (so as to not throw errors)
                     player.loadVideoById(theQ[0]); 
+                    theQ.shift();
 
                   }
                   if (theQ.length === 1) {
