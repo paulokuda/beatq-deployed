@@ -75,6 +75,11 @@
           }
           // autoplay video
           function onPlayerReady(event) {
+
+              if (theQ.length != 0){
+                  // event.target.playVideo();
+                  player.loadVideoById(theQ[0]);
+              }
             
               // $('#about-text').append(player.likeCount);
               $("#make-favorite").click(function(){
@@ -101,8 +106,8 @@
                   // event.data = 0;
                   // onPlayerStateChange(event);
                   rewind.push(theQ[0]);
-                  player.loadVideoById(theQ[0]);
                   theQ.shift();
+                  player.loadVideoById(theQ[0]);
                   $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
                 }
               });
@@ -129,9 +134,7 @@
               $('#show-queue').html(event.target.A.videoData.title);
               $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
               // $('#queue-count').html("(Users in the chat: " + theQ.length + ")");
-              if (theQ.length != 0){
-                event.target.playVideo();
-              }
+              
           }
           // when video ends
           function onPlayerStateChange(event) {      
