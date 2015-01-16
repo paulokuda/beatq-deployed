@@ -5,17 +5,6 @@ var morgan = require('morgan');
 var bson = require('bson');
 
 
-  // app = express();
-
-// app.get('/:collection/:operation', dbRoutes.modify);
-
-// nicknames = [];
-// /*1*/ var httpServer = http.Server(self.app);
-// /*2*/ var sio =require('socket.io');
-// /*3*/ var io = sio(httpServer);
-// /*4*/ httpServer.listen(port, ipaddress);
-
-
 
 var SimpleStaticServer = function() {
     nicknames = [];
@@ -26,10 +15,9 @@ var SimpleStaticServer = function() {
     var sio =require('socket.io');
     var io = sio(httpServer);
     messageRoutes.init(io);
-    // var io = require('socket.io').listen(http)
     // Set the views directory
     self.app.set('views', __dirname + '/views');
-    // self.app.get('/:namespace', dbRoutes.getUser);
+    
     // Define the view (templating) engine
     self.app.set('view engine', 'ejs');
     // Log requests

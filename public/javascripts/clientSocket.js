@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     
 
-    // socket.emit('index page');
+    
     $('.collapsible').collapsible();
     $('#collapse').onclick = function() {
         $('about-text').html("Click To View");
@@ -30,14 +30,7 @@ $(document).ready(function(){
     // CLIENT-SIDE JS
 
     $('.main-container').hide();
-    // $('#nickWrap').hide();
-    
-    // document.getElementById("new-room").onclick = function(){
-    //     $('#first-page').slideToggle();
-    //     $('.main-container').show();
-    //     // $('#nickWrap').show();
 
-    // }
     
 
     var scrolled = false;
@@ -65,8 +58,6 @@ $(document).ready(function(){
         socket.emit('new user', $('#nickname').val(), function(data) {
             
             if (data) {
-                // console.log(data);
-                // alert(JSON.stringify(nickBox));
                     
                 $('#first-page').slideUp();
                 $('.main-container').show();
@@ -129,10 +120,7 @@ $(document).ready(function(){
         var fullUrl = (firstHalfUrl + videoId + secondHalfUrl);
         theQ.push("" + videoId);
         $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
-        // $('#queue-count').html("Title (Songs in the Q: " + theQ.length + ")");
-        // alert(fullUrl);
-        // $('#media').html(firstHalfUrl + videoId + secondHalfUrl);
-        // $('#show-queue').html(theQ);
+      
         $('#messages').append($('<li>').html('<b>' + msg.user + '</b>' + " has just added a YouTube video to the q."));
         updateScroll();
         return false;

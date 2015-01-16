@@ -108,8 +108,8 @@
                   // event.data = 0;
                   // onPlayerStateChange(event);
                   rewind.push(theQ[0]);
-                  theQ.shift();
                   player.loadVideoById(theQ[0]);
+                  theQ.shift();
                   $('#song-title').html("Title (Songs in the Q: " + theQ.length + ")");
                 }
               });
